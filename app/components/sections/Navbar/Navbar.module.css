@@ -1,0 +1,161 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background: #fff;
+    z-index: 1000;
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-soft);
+}
+
+.sticky {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.637);
+
+
+}
+
+.hiddenNav {
+    display: none;
+}
+
+.logo {
+    height: 60px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.navLinks {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    align-items: center;
+}
+
+.navLinks li {
+    cursor: pointer;
+    color: var(--text-dark);
+    font-weight: bold;
+    transition: var(--transition-base);
+}
+
+.navLinks li:hover {
+    color: var(--color-blue);
+}
+
+.activeMenu {
+    color: var(--color-indigo);
+}
+
+.mobileMenuIcon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+/* Sidebar */
+.sidebarOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: flex-start;
+    z-index: 999;
+}
+
+.sidebar {
+    width: 300px;
+    max-width: 80%;
+    background: var(--background-light);
+    height: 100%;
+    padding: 2rem 1rem;
+    box-shadow: var(--shadow-medium);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: slideIn 0.3s forwards;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sidebar ul li {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: var(--transition-base);
+}
+
+.sidebar ul li:hover {
+    color: var(--color-blue);
+}
+
+.BrandWrapperMoile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoMobile {
+    width: 150px;
+    height: 50px;
+
+    cursor: pointer;
+}
+
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .navLinks {
+        display: none;
+    }
+
+    .mobileMenuIcon {
+        display: block;
+    }
+
+    .sidebar {
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .sidebarOverlay {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .logo {
+        width: 150px;
+        height: 50px;
+    }
+
+    .sidebar {
+        width: 180px;
+    }
+}

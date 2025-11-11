@@ -1,0 +1,110 @@
+.button {
+    font-family: inherit;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+}
+
+/* === Sizes === */
+.sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.md {
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+}
+
+.lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+}
+
+/* === Variants === */
+.primary {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+}
+
+.primary:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.secondary {
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+}
+
+.secondary:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.accent {
+    background: var(--gradient-accent);
+    color: var(--text-light);
+}
+
+.accent:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.outline {
+    background: transparent;
+    border: 2px solid var(--color-indigo);
+    color: var(--color-indigo);
+}
+
+.outline:hover {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    box-shadow: var(--shadow-medium);
+}
+
+.ghost {
+    background: transparent;
+    color: var(--text-dark);
+}
+
+.ghost:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.danger {
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    color: var(--text-light);
+}
+
+.danger:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.gradient {
+    background: var(--gradient-deep);
+    color: var(--text-light);
+}
+
+.gradient:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+/* === Disabled === */
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
+    box-shadow: none;
+}

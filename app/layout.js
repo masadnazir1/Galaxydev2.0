@@ -1,6 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Head from "next/head";
 import "./globals.css";
+import "./theme.css";
+import "./scrollbar.css";
+import Navbar from "./components/sections/Navbar/Navbar";
+import ScrollToTop from "./components/sections/ScrollToTop/ScrollToTop";
+import Footer from "./components/sections/Footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +47,12 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <>
+          <Navbar />
+          {children}
+          <ScrollToTop />
+          <Footer />
+        </>
       </body>
     </html>
   );

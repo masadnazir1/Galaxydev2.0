@@ -1,0 +1,71 @@
+:root {
+    /* === Brand Base Colors === */
+    --color-blue: #3aa9ff;
+    --color-indigo: #6366f1;
+    --color-violet: #8b5cf6;
+    --color-pink: #ec38ff;
+    --color-cyan: #00c6ff;
+
+    /* === Gradient Variants === */
+    --gradient-primary: linear-gradient(135deg, var(--color-cyan), var(--color-pink));
+    --gradient-secondary: linear-gradient(135deg, var(--color-blue), var(--color-violet));
+    --gradient-accent: linear-gradient(135deg, var(--color-indigo), var(--color-pink));
+    --gradient-deep: linear-gradient(135deg, #2e1ee0, #9f5eff);
+
+    /* === Backgrounds === */
+    --background-light: #ffffff;
+    --background-dark: #0f172a;
+    --background-gradient: linear-gradient(180deg, #f8fafc, #eef2ff);
+
+    /* === Text Colors === */
+    --text-dark: #111827;
+    --text-muted: #4b5563;
+    --text-light: #f9fafb;
+    --text-accent: var(--color-indigo);
+
+    /* === Shadows === */
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+    /* === Radii === */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    /* === Transitions === */
+    --transition-base: all 0.25s ease;
+}
+
+/* === Utility Classes (Optional for quick use) === */
+.bg-gradient-primary {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+}
+
+.bg-gradient-secondary {
+    background: var(--gradient-secondary);
+    color: var(--text-light);
+}
+
+.text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-gradient {
+    background: var(--gradient-primary);
+    border: none;
+    color: #fff;
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-gradient:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}

@@ -1,0 +1,119 @@
+.servicesSection {
+    padding: 6rem 4rem;
+    background: #fff;
+    text-align: center;
+}
+
+.servicesHeading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: none;
+}
+
+.servicesSubheading {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+.servicesGrid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.serviceCard {
+    background: var(--background-light);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-base);
+    cursor: pointer;
+}
+
+.serviceCard:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+
+.serviceIcon {
+    font-size: 2.5rem;
+    color: var(--color-indigo);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.iconWrapper {
+    padding: 10px;
+    border: 2px solid var(--color-indigo);
+    border-radius: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.serviceTitle {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.serviceDescription {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.ctaWrapper {
+    margin-top: 3rem;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .servicesSection {
+        padding: 4rem 1.5rem;
+    }
+
+    .servicesHeading {
+        font-size: 2rem;
+    }
+
+    .servicesSubheading {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .servicesGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .serviceCard {
+        padding: 1.5rem;
+    }
+
+    .serviceIcon {
+        font-size: 2rem;
+    }
+
+    .serviceTitle {
+        font-size: 1.1rem;
+    }
+
+    .serviceDescription {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,42 @@
+/* Scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-light);
+    border-radius: var(--radius-lg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-indigo);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-base);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-violet);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Scrollbar corner */
+::-webkit-scrollbar-corner {
+    background: var(--background-light);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-indigo) var(--background-light);
+}
+
+*::-moz-scrollbar-thumb {
+    border-radius: var(--radius-lg);
+    background-clip: padding-box;
+}
+
+*::-moz-scrollbar-track {
+    background: var(--background-light);
+}

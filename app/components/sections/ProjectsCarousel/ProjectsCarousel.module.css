@@ -1,0 +1,139 @@
+.carouselSection {
+    padding: 4rem 2rem;
+    background: var(--background-light);
+    text-align: center;
+}
+
+.heading {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+.subheading {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+
+}
+
+.card {
+    background: var(--background-gradient);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 1.8rem;
+    transition: var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.imageWrapper {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    text-align: left;
+    width: 100%;
+}
+
+.description {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    text-align: left !important;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.CtaSection {
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    display: flex;
+    width: 100%;
+}
+
+.primaryBtn {
+    background: var(--gradient-primary);
+    color: var(--text-light);
+    padding: 0.7rem 1.4rem;
+}
+
+.secondaryBtn {
+    background: var(--background-light);
+    color: var(--color-indigo);
+    border: 1px solid var(--color-indigo);
+    padding: 0.7rem 1.4rem;
+    transition: var(--transition-base);
+}
+
+.secondaryBtn:hover {
+    background: var(--color-indigo);
+    color: var(--text-light);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .heading {
+        font-size: 2rem;
+    }
+
+    .subheading {
+        font-size: 0.95rem;
+    }
+
+    .title {
+        font-size: 1.1rem;
+    }
+
+    .description {
+        font-size: 0.85rem;
+    }
+
+    .CtaSection {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .heading {
+        font-size: 1.8rem;
+    }
+
+    .subheading {
+        font-size: 0.9rem;
+    }
+
+    .title {
+        font-size: 1rem;
+    }
+
+    .description {
+        font-size: 0.8rem;
+    }
+}
