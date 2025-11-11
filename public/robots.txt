@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.galaxydev.pk/
+
+# Sitemaps
+Sitemap: https://www.galaxydev.pk/sitemap.xml
