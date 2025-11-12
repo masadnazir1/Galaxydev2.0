@@ -1,0 +1,11 @@
+services:
+  galaxydev-nextjs:
+    container_name: galaxydev-nextjs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4001:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
