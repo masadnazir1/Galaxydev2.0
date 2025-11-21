@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: "Blog", path: "/blogs" },
     { name: "Careers", path: "/careers" },
     { name: "FAQs", path: "/faqs" },
+    { name: "Privacy Policy", path: "/privacy-policy" },
   ];
 
   useEffect(() => {
