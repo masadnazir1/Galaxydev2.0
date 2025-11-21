@@ -5,114 +5,148 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 2rem;
-    background: #fff;
+    padding: 0.75rem 3rem;
+    background: var(--background-light);
+    /* Base color */
     z-index: 1000;
     transition: var(--transition-base);
     box-shadow: var(--shadow-soft);
 }
 
 .sticky {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.637);
-
-
-}
-
-.hiddenNav {
-    display: none;
+    /* Enhanced sticky effect using transparency and blur */
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow-medium);
+    padding: 0.5rem 3rem;
+    /* Slightly reduced padding when sticky */
 }
 
 .logo {
-    height: 60px;
-    width: 200px;
+    height: 50px;
+    width: auto;
     cursor: pointer;
+    display: flex;
+    /* Ensures image centers well */
+    align-items: center;
 }
 
+/* --- Desktop Links --- */
 .navLinks {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.8rem;
     list-style: none;
     align-items: center;
 }
 
-.navLinks li {
+.navLinks li a {
+    text-decoration: none;
     cursor: pointer;
     color: var(--text-dark);
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 1rem;
     transition: var(--transition-base);
+    padding: 5px 0;
+    /* Area for hover effect */
+    position: relative;
 }
 
-.navLinks li:hover {
-    color: var(--color-blue);
-}
-
-.activeMenu {
+.navLinks li a:hover {
     color: var(--color-indigo);
 }
 
-.mobileMenuIcon {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--text-dark);
+.activeMenu {
+    color: var(--color-indigo) !important;
+    font-weight: 700 !important;
 }
 
-/* Sidebar */
+/* --- Mobile Toggle --- */
+.mobileMenuIcon {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-indigo);
+}
+
+/* --- Sidebar --- */
 .sidebarOverlay {
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
     display: flex;
     justify-content: flex-start;
-    z-index: 999;
+    z-index: 9999;
+    /* Ensure it's above the navbar */
 }
 
 .sidebar {
     width: 300px;
-    max-width: 80%;
+    max-width: 85%;
     background: var(--background-light);
     height: 100%;
-    padding: 2rem 1rem;
+    padding: 1.5rem;
     box-shadow: var(--shadow-medium);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
     animation: slideIn 0.3s forwards;
+    overflow-y: auto;
 }
 
-.sidebar ul {
+.BrandWrapperMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.logoMobile {
+    width: 130px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.closeBtn {
+    background: var(--color-danger);
+    color: #000;
+    border: none;
+    border-radius: var(--radius-sm);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.mobileLinks {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    padding: 0;
 }
 
-.sidebar ul li {
-    cursor: pointer;
+.mobileLinks li a {
+    text-decoration: none;
     font-weight: 500;
     color: var(--text-dark);
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.5rem 0;
+    border-left: 3px solid transparent;
     transition: var(--transition-base);
 }
 
-.sidebar ul li:hover {
-    color: var(--color-blue);
+.mobileLinks li a:hover,
+.mobileLinks li .activeMenu {
+    color: var(--color-indigo);
+    border-left-color: var(--color-indigo);
+    padding-left: 0.5rem;
 }
-
-.BrandWrapperMoile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logoMobile {
-    width: 150px;
-    height: 50px;
-
-    cursor: pointer;
-}
-
 
 @keyframes slideIn {
     from {
@@ -124,7 +158,10 @@
     }
 }
 
-/* Responsive */
+/* =========================================
+   RESPONSIVENESS
+   ========================================= */
+
 @media screen and (max-width: 768px) {
     .navLinks {
         display: none;
@@ -134,28 +171,55 @@
         display: block;
     }
 
-    .sidebar {
-        display: flex;
+    .navbar {
+        padding: 0.75rem 1.5rem;
     }
 }
 
-@media screen and (min-width: 769px) {
-    .sidebarOverlay {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 200px) {
+/* Small Mobile (480px) */
+@media screen and (max-width: 480px) {
     .navbar {
         padding: 0.5rem 1rem;
     }
+}
+
+/* EXTREME Small Devices (200px - 320px) */
+@media screen and (max-width: 320px) {
+    .navbar {
+        padding: 0.4rem 0.5rem;
+    }
 
     .logo {
-        width: 150px;
-        height: 50px;
+        height: 40px;
+        width: auto;
+    }
+
+    .logo img {
+        width: 130px !important;
+        height: 40px !important;
+    }
+
+    .mobileMenuIcon {
+        font-size: 1.3rem;
     }
 
     .sidebar {
-        width: 180px;
+        width: 250px;
+        padding: 1rem;
+    }
+
+    .logoMobile img {
+        width: 120px !important;
+        height: 35px !important;
+    }
+
+    .mobileLinks li a {
+        font-size: 1rem;
+    }
+
+    .closeBtn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
     }
 }

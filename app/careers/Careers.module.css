@@ -1,0 +1,460 @@
+.container {
+  padding: 4rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  overflow: hidden;
+}
+
+/* === Intro Section === */
+.intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.intro h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+
+.intro p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* === Perks Grid === */
+.perksSection .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.perkCard {
+  background: var(--background-light);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-base);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  text-align: center;
+}
+
+.perkCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--color-indigo);
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  background: #eef2ff;
+  color: var(--color-indigo);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto 1.5rem auto;
+}
+
+.perkCard h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-dark);
+}
+
+.perkCard p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* === Open Source Section (Dark Theme Contrast) === */
+.osSection {
+  background: var(--background-dark);
+  padding: 4rem;
+  border-radius: var(--radius-lg);
+  color: var(--text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background effect */
+.osSection::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: var(--gradient-primary);
+  filter: blur(80px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.osHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.osTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.githubIcon {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.osHeader h2 {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.heart {
+  color: var(--color-pink);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.osHeader p {
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Repo Grid */
+.repoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.repoCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.repoCard:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-cyan);
+}
+
+.repoTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.repoTop h3 {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.langTag {
+  font-size: 0.7rem;
+  border: 1px solid var(--color-blue);
+  color: var(--color-blue);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+.repoCard p {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.repoStats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.repoStats span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.repoLink {
+  margin-left: auto;
+  color: var(--color-cyan);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.contributeCard {
+  background: var(--gradient-secondary);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: none;
+}
+
+.contributeCard h3 {
+  color: #fff;
+}
+
+.contributeCard button {
+  background: #fff !important;
+  color: var(--color-indigo) !important;
+  width: auto;
+}
+
+/* === Jobs Section === */
+.jobsSection {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.jobCard {
+  background: var(--background-light);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  border-left: 5px solid var(--color-indigo);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition-base);
+}
+
+.jobCard:hover {
+  transform: translateX(10px);
+  box-shadow: var(--shadow-medium);
+}
+
+.jobInfo {
+  flex: 1;
+}
+
+.dept {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--color-indigo);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.jobInfo h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.jobMeta {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.techTag {
+  background: #f1f5f9;
+  padding: 0.2rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* === CTA === */
+.cta {
+  text-align: center;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+}
+
+.cta h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.emailLink {
+  color: var(--color-indigo);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* =========================================
+   RESPONSIVENESS (Mobile First Logic)
+   ========================================= */
+
+/* Tablet / Small Laptop */
+@media (max-width: 1024px) {
+  .container {
+    gap: 4rem;
+  }
+
+  .osSection {
+    padding: 3rem 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1.5rem;
+  }
+
+  .jobCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .jobAction {
+    width: 100%;
+  }
+
+  .jobAction button {
+    width: 100%;
+  }
+
+  .jobCard:hover {
+    transform: translateY(-5px);
+    /* Move up instead of right */
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+  .intro h2,
+  .osHeader h2,
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .perksSection .grid,
+  .repoGrid {
+    grid-template-columns: 1fr;
+    /* Force single column */
+  }
+
+  .osSection {
+    padding: 2rem 1rem;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* EXTREME Small Devices (200px - 320px) */
+@media (max-width: 320px) {
+  .container {
+    padding: 1rem 0.5rem;
+    gap: 2.5rem;
+  }
+
+  /* Typography scaling */
+  .intro h2,
+  .sectionTitle,
+  .osHeader h2 {
+    font-size: 1.3rem;
+  }
+
+  .intro p,
+  .perkCard p,
+  .repoCard p {
+    font-size: 0.9rem;
+  }
+
+  .jobInfo h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Open Source Section Adjustments */
+  .osTitle {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .repoTop {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .repoStats {
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+
+  /* Job Card Adjustments */
+  .jobCard {
+    padding: 1rem;
+    border-left-width: 3px;
+  }
+
+  .techTag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* Ensure buttons don't overflow */
+  /* button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  } */
+}

@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./TrustUs.module.css";
 import Button from "../../UI/Button/Button";
+import styles from "./TrustUs.module.css";
 
 export default function TrustUs() {
   return (

@@ -50,7 +50,6 @@
 .buttonGroup {
     display: flex;
     gap: 1rem;
-    flex-wrap: wrap;
 }
 
 .trustImageWrapper {
@@ -68,6 +67,9 @@
 
 /* Responsive */
 @media screen and (max-width: 1024px) {
+
+
+
     .trustSection {
 
         background: var(--background-gradient);
@@ -91,6 +93,15 @@
 }
 
 @media screen and (max-width: 480px) {
+
+
+    .buttonGroup {
+        display: flex;
+        gap: 1rem;
+        /* flex-wrap: wrap; */
+        flex-direction: row;
+    }
+
     .trustHeading {
         font-size: 1.8rem;
     }

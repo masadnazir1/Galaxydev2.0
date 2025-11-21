@@ -1,138 +1,192 @@
 "use client";
 
-import { useState } from "react";
-import styles from "./Footer.module.css";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import {
   FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
   FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+  FaPaperPlane,
+  FaTimes,
+  FaTwitter,
 } from "react-icons/fa";
 import Button from "../../UI/Button/Button";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   const [contactOpen, setContactOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
 
-  const toggleContactForm = () => setContactOpen(!contactOpen);
+  const toggleContactForm = (e) => {
+    if (e) e.preventDefault();
+    setContactOpen(!contactOpen);
+  };
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
+    // Integrate API logic here
     console.log("Subscribed:", newsletterEmail);
     setNewsletterEmail("");
+    alert("Thanks for subscribing!");
   };
 
   return (
     <footer className={styles.footer}>
+      {/* Background element for visual depth */}
+      <div className={styles.bgOverlay}></div>
+
       <div className={styles.footerTop}>
-        {/* Logo + Description */}
+        {/* Column 1: Brand & Social */}
         <div className={styles.footerColumn}>
-          <div className={styles.logo}>
-            <Image src="/logofull.png" width={150} height={50} alt="Logo" />
-          </div>
+          <Link href="/" className={styles.logoLink}>
+            {/* Ensure logo image exists in public folder, else use text fallback */}
+            <Image
+              src="/logofull.png"
+              width={140}
+              height={45}
+              alt="GalaxyDev Logo"
+              className={styles.logoImg}
+            />
+          </Link>
           <p className={styles.footerDesc}>
             Delivering innovative tech solutions, custom software, and
-            automation services to clients globally.
+            automation services to empower businesses globally.
           </p>
           <div className={styles.socialIcons}>
-            <a href="#">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
               <FaFacebookF />
             </a>
-            <a href="#">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
               <FaTwitter />
             </a>
-            <a href="#">
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
               <FaLinkedinIn />
             </a>
-            <a href="#">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
               <FaInstagram />
             </a>
-            <a href="#">
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
               <FaGithub />
             </a>
           </div>
         </div>
 
-        {/* Quick Links */}
+        {/* Column 2: Company Links */}
         <div className={styles.footerColumn}>
-          <h4>Quick Links</h4>
-          <ul>
+          <h4>Company</h4>
+          <ul className={styles.linkList}>
             <li>
-              <a href="#services">Services</a>
+              <Link href="/about">About Us</Link>
             </li>
             <li>
-              <a href="#about">About</a>
+              <Link href="/services">Our Services</Link>
             </li>
             <li>
-              <a href="#blog">Blog</a>
+              <Link href="/careers">Careers / Join Us</Link>
             </li>
             <li>
-              <a href="#careers">Careers</a>
+              <Link href="/contact">Contact Us</Link>
             </li>
             <li>
-              <a href="#faq">FAQ</a>
+              <Link href="/privacy-policy">Legal Center</Link>
             </li>
           </ul>
         </div>
 
-        {/* Resources */}
+        {/* Column 3: Resources & Help */}
         <div className={styles.footerColumn}>
           <h4>Resources</h4>
-          <ul>
+          <ul className={styles.linkList}>
             <li>
-              <a href="#docs">Docs</a>
+              <Link href="/blogs">Tech Blog</Link>
             </li>
             <li>
-              <a href="#help">Help Center</a>
+              <Link href="/faqs">FAQs & Support</Link>
+            </li>
+            {/* Using button for modal action */}
+            <li>
+              <button onClick={toggleContactForm} className={styles.textBtn}>
+                Quick Inquiry
+              </button>
             </li>
             <li>
-              <a href="#tutorials">Tutorials</a>
-            </li>
-            <li>
-              <a href="#contact" onClick={toggleContactForm}>
-                Quick Contact
-              </a>
+              <Link href="/sitemap.xml">Sitemap</Link>
             </li>
           </ul>
         </div>
 
-        {/* Newsletter */}
+        {/* Column 4: Newsletter */}
         <div className={styles.footerColumn}>
-          <h4>Subscribe to our Newsletter</h4>
-          <p>
-            Get the latest updates on our services, blogs, and tech insights.
+          <h4>Stay Updated</h4>
+          <p className={styles.newsletterText}>
+            Get the latest tech trends and company updates directly in your
+            inbox.
           </p>
           <form
             onSubmit={handleNewsletterSubmit}
             className={styles.newsletterForm}
           >
-            <input
-              type="email"
-              placeholder="Your email address"
-              value={newsletterEmail}
-              onChange={(e) => setNewsletterEmail(e.target.value)}
-              required
-            />
-            <Button type="submit">Subscribe</Button>
+            <div className={styles.inputGroup}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                required
+              />
+              <button type="submit" aria-label="Subscribe">
+                <FaPaperPlane />
+              </button>
+            </div>
           </form>
         </div>
       </div>
 
-      {/* Contact Form Overlay */}
+      {/* Quick Contact Modal Overlay */}
       {contactOpen && (
         <div className={styles.contactFormOverlay} onClick={toggleContactForm}>
           <div
             className={styles.contactForm}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3>Contact Us</h3>
+            <div className={styles.modalHeader}>
+              <h3>Quick Inquiry</h3>
+              <button onClick={toggleContactForm} aria-label="Close">
+                <FaTimes />
+              </button>
+            </div>
             <form>
               <input type="text" placeholder="Your Name" required />
               <input type="email" placeholder="Your Email" required />
-              <textarea placeholder="Your Message" required />
-              <Button type="submit">Send</Button>
+              <textarea placeholder="How can we help?" rows={4} required />
+              <Button type="submit">Send Message</Button>
             </form>
           </div>
         </div>
@@ -140,11 +194,14 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <div className={styles.footerBottom}>
-        <p>© {new Date().getFullYear()} Galaxydev.pk All rights reserved.</p>
+        <div className={styles.copyright}>
+          <p>© {new Date().getFullYear()} GalaxyDev.pk. All rights reserved.</p>
+        </div>
         <div className={styles.footerLegal}>
-          <a href="#terms">Terms of Service</a>
-          <span>|</span>
-          <a href="#privacy">Privacy Policy</a>
+          {/* Both link to Privacy Policy page where Tabs exist */}
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <span className={styles.separator}>•</span>
+          <Link href="/privacy-policy">Terms of Service</Link>
         </div>
       </div>
     </footer>

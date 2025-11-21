@@ -1,21 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import styles from "./Navbar.module.css";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaBars, FaEnvelope, FaTimes } from "react-icons/fa";
 import Button from "../../UI/Button/Button";
-import { useRouter } from "next/navigation";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
-  const router = useRouter();
+  const pathname = usePathname();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isScrolled, setScrolled] = useState(false);
-  const [activeMenu, setActiveMenu] = useState("Home");
+
+  // Define menu structure with paths matching the app directory
+  const menus = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Blog", path: "/blogs" },
+    { name: "Careers", path: "/careers" },
+    { name: "FAQs", path: "/faqs" },
+  ];
 
   useEffect(() => {
+    // Scroll listener to toggle the sticky class
     const handleScroll = () => setScrolled(window.scrollY > 0);
     window.addEventListener("scroll", handleScroll);
 
+    // Close sidebar on resize above mobile threshold
     const handleResize = () => {
       if (window.innerWidth > 768 && isSidebarOpen) {
         setSidebarOpen(false);
@@ -30,89 +43,100 @@ export default function Navbar() {
   }, [isSidebarOpen]);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
-
-  const closeSidebar = (e) => {
-    if (e.target === e.currentTarget) setSidebarOpen(false);
-  };
-
-  const handleMenuClick = (menu) => {
-    setActiveMenu(menu);
-    setSidebarOpen(false);
-    const pagelink = menu?.toLowerCase();
-    router.replace(pagelink);
-  };
-
-  const menus = ["Home", "About", "Services", "Blogs"];
+  const closeSidebar = () => setSidebarOpen(false);
 
   return (
     <>
-      <nav
-        className={`${styles.navbar} ${isScrolled ? styles.sticky : ""} ${
-          isSidebarOpen && window.innerWidth <= 768 ? styles.hiddenNav : ""
-        }`}
-      >
-        <div className={styles.logo}>
+      <nav className={`${styles.navbar} ${isScrolled ? styles.sticky : ""}`}>
+        {/* Logo Link (Home) */}
+        <Link href="/" className={styles.logo}>
           <Image
             src="/logofull.png"
-            width={200}
-            height={60}
-            alt="Galaxydev logo"
-            onClick={() => (window.location.href = "/")}
+            width={180}
+            height={50}
+            alt="GalaxyDev Home"
+            priority={true}
           />
-        </div>
+        </Link>
 
+        {/* Desktop Navigation Links */}
         <ul className={styles.navLinks}>
           {menus.map((menu) => (
-            <li
-              key={menu}
-              className={activeMenu === menu ? styles.activeMenu : ""}
-              onClick={() => handleMenuClick(menu)}
-            >
-              {menu}
+            <li key={menu.name}>
+              <Link
+                href={menu.path}
+                className={pathname === menu.path ? styles.activeMenu : ""}
+                aria-current={pathname === menu.path ? "page" : undefined}
+              >
+                {menu.name}
+              </Link>
             </li>
           ))}
           <li>
-            <Button onClick={() => handleMenuClick("contact")}>
-              Contact Us
-            </Button>
+            <Link href="/contact" onClick={closeSidebar}>
+              <Button>
+                <FaEnvelope style={{ marginRight: "0.5rem" }} /> Contact Us
+              </Button>
+            </Link>
           </li>
         </ul>
 
-        <div className={styles.mobileMenuIcon} onClick={toggleSidebar}>
-          &#9776;
+        {/* Mobile Menu Icon */}
+        <div
+          className={styles.mobileMenuIcon}
+          onClick={toggleSidebar}
+          role="button"
+          aria-label="Toggle navigation menu"
+          aria-expanded={isSidebarOpen}
+        >
+          <FaBars />
         </div>
       </nav>
 
-      {isSidebarOpen && window.innerWidth <= 768 && (
+      {/* Sidebar Overlay and Menu */}
+      {isSidebarOpen && (
         <div className={styles.sidebarOverlay} onClick={closeSidebar}>
-          <div className={styles.sidebar}>
-            <div className={styles.BrandWrapperMoile}>
-              <Image
-                src="/logofull.png"
-                width={200}
-                height={60}
-                alt="Galaxydev logo"
+          <div className={styles.sidebar} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.BrandWrapperMobile}>
+              <Link
+                href="/"
+                onClick={closeSidebar}
                 className={styles.logoMobile}
-              />
-
-              <Button
-                style={{ width: "30px", padding: "10px" }}
-                variant="danger"
-                onClick={toggleSidebar}
               >
-                x
-              </Button>
+                <Image
+                  src="/logofull.png"
+                  width={150}
+                  height={45}
+                  alt="GalaxyDev logo"
+                />
+              </Link>
+
+              <button
+                className={styles.closeBtn}
+                onClick={toggleSidebar}
+                aria-label="Close menu"
+              >
+                <FaTimes />
+              </button>
             </div>
-            <ul>
+
+            <ul className={styles.mobileLinks}>
               {menus.map((menu) => (
-                <li key={menu} onClick={() => handleMenuClick(menu)}>
-                  {menu}
+                <li key={menu.name} onClick={closeSidebar}>
+                  <Link
+                    href={menu.path}
+                    className={pathname === menu.path ? styles.activeMenu : ""}
+                  >
+                    {menu.name}
+                  </Link>
                 </li>
               ))}
               <li>
-                <Button onClick={() => handleMenuClick("contact")}>
-                  Contact Us
-                </Button>
+                <Link href="/contact" onClick={closeSidebar}>
+                  <Button style={{ width: "100%", marginTop: "1rem" }}>
+                    Contact Us
+                  </Button>
+                </Link>
               </li>
             </ul>
           </div>

@@ -1,186 +1,300 @@
+/* Main Container */
 .contactPage {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    padding: 2rem 4rem;
+    padding: 4rem 2rem;
+    max-width: 1280px;
     margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
 }
 
-/* Hero */
-.hero {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 2rem;
-    justify-content: space-between;
+/* Layout Grid: 2 Columns (Form | Sidebar) */
+.layoutGrid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    /* Form takes more space */
+    gap: 3rem;
+    align-items: start;
 }
 
-.heroContent {
-    flex: 1 1 400px;
+/* === Left Column: Form Section === */
+.formSection {
+    background: var(--background-light);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.heroContent h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
+.formHeader {
+    margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
-    background-clip: none;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 1rem;
+    background-clip: text;
+    display: inline-block;
 }
 
-.heroContent p {
+.sectionText {
     color: var(--text-muted);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-}
-
-.heroImage {
-    flex: 1 1 400px;
-    display: flex;
-    justify-content: end;
-}
-
-.heroImage img {
-    border-radius: 10px;
-}
-
-/* Contact Info */
-.contactInfo {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-}
-
-.infoCard {
-    background: var(--background-light);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    text-align: center;
-    box-shadow: var(--shadow-soft);
-    transition: var(--transition-base);
-}
-
-.infoCard:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
-}
-
-.infoCard .icon {
-    font-size: 2.5rem;
-    color: var(--color-indigo);
-    margin-bottom: 1rem;
-}
-
-.infoCard h3 {
-    margin-bottom: 0.5rem;
-}
-
-/* Contact Form */
-.contactFormSection {
-    text-align: center;
-}
-
-.contactFormSection h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.contactFormSection p {
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
 }
 
 .contactForm {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    max-width: 600px;
-    margin: 0 auto;
+    gap: 1.5rem;
 }
 
-.contactForm input,
-.contactForm textarea {
-    padding: 0.8rem 1rem;
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-left: 4px;
+}
+
+.input,
+.textarea {
+    padding: 1rem 1.2rem;
     border-radius: var(--radius-md);
-    border: 1px solid #ddd;
-    outline: none;
+    border: 1px solid #e2e8f0;
     font-size: 1rem;
+    background: #f8fafc;
+    transition: var(--transition-base);
+    font-family: inherit;
     width: 100%;
 }
 
-.contactForm input:focus,
-.contactForm textarea:focus {
+.input:focus,
+.textarea:focus {
+    outline: none;
     border-color: var(--color-indigo);
-    box-shadow: var(--shadow-soft);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-/* Map Section */
-.mapSection {
-    text-align: center;
+/* === Right Column: Sidebar === */
+.infoSidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.mapSection h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-/* CTA Section */
-.cta {
-    background: var(--gradient-secondary);
-    color: var(--text-light);
-    padding: 3rem 2rem;
+.infoWrapper {
+    background: var(--gradient-deep);
+    padding: 2.5rem;
     border-radius: var(--radius-lg);
-    text-align: center;
+    color: #fff;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
 }
 
-.cta h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+/* Decorative Circle on Sidebar */
+.infoWrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
-.cta p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+.sidebarTitle {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #fff;
 }
 
-/* Responsive */
-@media screen and (max-width: 1024px) {
-    .hero {
-        flex-direction: column-reverse;
-        text-align: center;
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+.iconBox {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.infoItem h3 {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.infoItem p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.socialIcon {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    color: var(--color-indigo);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: var(--transition-base);
+}
+
+.socialIcon:hover {
+    transform: translateY(-3px);
+    background: var(--color-cyan);
+    color: #fff;
+}
+
+/* Map */
+.mapContainer {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   RESPONSIVENESS (Mobile First Logic)
+   ========================================= */
+
+/* Tablet / Small Laptop */
+@media (max-width: 1024px) {
+    .layoutGrid {
+        grid-template-columns: 1fr;
+        /* Stack vertically */
+        gap: 4rem;
+    }
+
+    .contactPage {
+        padding: 2rem;
+    }
+
+    .infoWrapper {
+        padding: 2rem;
     }
 }
 
-@media screen and (max-width: 480px) {
-    .heroContent h1 {
-        font-size: 2rem;
+/* Mobile Phones */
+@media (max-width: 768px) {
+    .contactPage {
+        padding: 2rem 1rem;
     }
 
-    .contactForm input,
-    .contactForm textarea {
-        font-size: 0.9rem;
+    .formSection {
+        padding: 1.5rem;
     }
 
-    .cta h2 {
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+}
+
+/* Small Mobile (480px) */
+@media (max-width: 480px) {
+    .formSection {
+        padding: 1.2rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.6rem;
+    }
+
+    .sectionText {
+        font-size: 0.95rem;
+    }
+
+    .sidebarTitle {
         font-size: 1.5rem;
     }
 }
 
-@media screen and (max-width: 320px) {
+/* EXTREME Small Devices (200px - 320px) */
+@media (max-width: 320px) {
     .contactPage {
+        padding: 0.5rem;
+        /* Minimize padding */
+        gap: 1.5rem;
+    }
+
+    .formSection,
+    .infoWrapper {
         padding: 1rem;
-        gap: 2rem;
+        border-radius: var(--radius-md);
     }
 
-    .heroContent h1 {
-        font-size: 1.8rem;
-    }
-
-    .cta h2 {
+    /* Typography scaling */
+    .sectionTitle,
+    .sidebarTitle {
         font-size: 1.3rem;
+        word-break: break-word;
+    }
+
+    .sectionText {
+        font-size: 0.85rem;
+    }
+
+    /* Form Elements */
+    .label {
+        font-size: 0.8rem;
+    }
+
+    .input,
+    .textarea {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Info Items */
+    .infoItem {
+        flex-direction: column;
+        /* Stack icon and text */
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .iconBox {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .infoItem p {
+        font-size: 0.95rem;
+        word-break: break-all;
+        /* Prevent long emails from overflowing */
     }
 }

@@ -1,130 +1,282 @@
-/* === BlogsPage.module.css === */
-
 .container {
-    max-width: 1300px;
+    padding: 4rem 2rem;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    background: var(--background-light);
+}
+
+/* === Intro & Controls === */
+.controlsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+}
+
+.introContent {
+    text-align: center;
+    max-width: 700px;
 }
 
 .heading {
-    font-size: 2.8rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 10px;
-    color: var(--text-primary, #111);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
 }
 
 .intro {
-    max-width: 780px;
-    margin: 0 auto 60px auto;
-    text-align: center;
-    color: var(--text-secondary, #444);
     font-size: 1.1rem;
+    color: var(--text-muted);
     line-height: 1.7;
 }
 
-/* === Blog Grid === */
+/* Filter Bar */
+.filterBar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.categories {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.catBtn {
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-base);
+    font-weight: 500;
+}
+
+.catBtn:hover {
+    color: var(--color-indigo);
+    background: #f8fafc;
+}
+
+.catBtn.active {
+    background: var(--color-indigo);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+}
+
+/* Search Input */
+.searchWrapper {
+    position: relative;
+    min-width: 250px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    outline: none;
+    transition: var(--transition-base);
+    font-size: 0.9rem;
+}
+
+.searchInput:focus {
+    border-color: var(--color-indigo);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* === Blog Grid System === */
 .blogGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 40px;
-    align-items: stretch;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
 }
 
-/* === Blog Card Common Layout === */
-.blogGrid a {
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+/* Logic for Full Width Cards:
+   If the component detects 'fullWidth', this class makes it span all columns
+*/
+.fullWidthWrapper {
+    grid-column: 1 / -1;
+    width: 100%;
 }
 
-.blogGrid a:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+.cardWrapper {
+    height: 100%;
+    /* Ensure uniform height */
 }
 
-/* === Image & Card Adjustments (for both Card + FullWidth variants) === */
-.blogGrid article {
-    background: #fff;
-    border-radius: 18px;
-    overflow: hidden;
+.emptyState {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    background: #f8fafc;
+    border-radius: var(--radius-md);
+    border: 1px dashed #cbd5e1;
+}
+
+/* === Newsletter === */
+.newsletter {
+    background: var(--gradient-secondary);
+    padding: 3rem 2rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    color: var(--text-light);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.3s ease;
+    align-items: center;
+    gap: 1.5rem;
 }
 
-.blogGrid article:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.newsletter h2 {
+    font-size: 1.8rem;
 }
 
-.blogGrid img {
+.newsletterForm {
+    display: flex;
+    gap: 0.5rem;
     width: 100%;
-    height: 230px;
-    object-fit: cover;
+    max-width: 400px;
 }
 
-.blogGrid h2 {
-    font-size: 1.4rem;
+.newsletterForm input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    border: none;
+    outline: none;
+}
+
+.newsletterForm button {
+    background: var(--color-indigo);
+    color: #fff;
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: var(--radius-sm);
     font-weight: 600;
-    color: var(--text-primary, #111);
-    margin: 18px 20px 8px 20px;
+    cursor: pointer;
+    transition: var(--transition-base);
 }
 
-.blogGrid p {
-    color: var(--text-secondary, #555);
-    font-size: 0.98rem;
-    line-height: 1.6;
-    margin: 0 20px 20px 20px;
+.newsletterForm button:hover {
+    background: #4f46e5;
 }
 
-/* === Full-Width Card Layout === */
-@media screen and (min-width: 1024px) {
-    .blogGrid article.fullWidth {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        height: 380px;
+/* =========================================
+   RESPONSIVENESS
+   ========================================= */
+
+/* Tablet (1024px) */
+@media (max-width: 1024px) {
+    .blogGrid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
 
-    .blogGrid article.fullWidth img {
-        height: 100%;
-    }
-
-    .blogGrid article.fullWidth .content {
-        padding: 40px;
-        display: flex;
+    .filterBar {
         flex-direction: column;
-        justify-content: center;
+        align-items: stretch;
+    }
+
+    .searchWrapper {
+        width: 100%;
     }
 }
 
-/* === Responsive Tweaks === */
-@media screen and (max-width: 1024px) {
-    .heading {
-        font-size: 2.2rem;
-    }
-
-    .intro {
-        font-size: 1rem;
-        margin-bottom: 40px;
-    }
-}
-
-@media screen and (max-width: 600px) {
+/* Mobile (768px) */
+@media (max-width: 768px) {
     .container {
-        padding: 60px 16px;
+        padding: 2rem 1.5rem;
+        gap: 3rem;
+    }
+
+    .heading {
+        font-size: 2rem;
     }
 
     .blogGrid {
-        gap: 24px;
+        grid-template-columns: 1fr;
+        /* Force single column */
+        gap: 2rem;
+    }
+}
+
+/* Small Mobile (480px) */
+@media (max-width: 480px) {
+    .categories {
+        justify-content: center;
     }
 
+    .newsletterForm {
+        flex-direction: column;
+    }
+
+    .newsletter h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* EXTREME Small Devices (200px - 320px) */
+@media (max-width: 320px) {
+    .container {
+        padding: 1rem 0.5rem;
+        /* Very tight padding */
+        gap: 2rem;
+    }
+
+    /* Typography Scaling */
     .heading {
-        font-size: 1.9rem;
+        font-size: 1.4rem;
     }
 
     .intro {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+    }
+
+    /* Filter UI scaling */
+    .catBtn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .searchInput {
+        font-size: 0.85rem;
+    }
+
+    /* Newsletter scaling */
+    .newsletter {
+        padding: 2rem 1rem;
+    }
+
+    .newsletter h2 {
+        font-size: 1.2rem;
+    }
+
+    .newsletterForm button {
+        padding: 0.8rem;
     }
 }
