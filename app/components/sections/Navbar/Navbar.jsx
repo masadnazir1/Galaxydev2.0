@@ -23,6 +23,7 @@ export default function Navbar() {
     { name: "FAQs", path: "/faqs" },
     { name: "Privacy Policy", path: "/privacy-policy" },
   ];
+  FAQs;
 
   useEffect(() => {
     // Scroll listener to toggle the sticky class
