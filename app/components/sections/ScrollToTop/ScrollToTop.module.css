@@ -1,41 +1,100 @@
-.scrollButton {
+/* Progress Wrap Wrapper */
+.progressWrap {
     position: fixed;
-    bottom: 2rem;
     right: 2rem;
-    background: var(--gradient-primary);
-    color: var(--text-light);
-    border: none;
-    border-radius: 1000px;
-    padding: 0.8rem;
+    bottom: 2rem;
+    height: 46px;
+    width: 46px;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: var(--transition-base);
-    box-shadow: var(--shadow-medium);
+    display: block;
+    border-radius: 50px;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    width: 50px;
-    height: 50px;
-    display: flex;
-
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 200ms linear;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
-.scrollButton:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-soft);
-}
-
-.show {
+.activeProgress {
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.progressWrap::after {
+    position: absolute;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f062';
+    /* Fallback if icon missing, but we use React Icon */
+    text-align: center;
+    line-height: 46px;
+    font-size: 18px;
+    color: var(--color-indigo, #6366f1);
+    left: 0;
+    top: 0;
+    height: 46px;
+    width: 46px;
+    cursor: pointer;
+    display: block;
+    z-index: 1;
+    transition: all 200ms linear;
+}
+
+.progressWrap:hover::after {
+    opacity: 0;
+}
+
+.progressWrap:hover .scrollIcon {
+    opacity: 1;
+    color: var(--color-indigo, #6366f1);
+}
+
+/* SVG Circle */
+.progressCircle path {
+    fill: none;
+}
+
+.progressCircle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.progressPath {
+    stroke: var(--color-indigo, #6366f1);
+    stroke-width: 4;
+    transition: all 200ms linear;
+    /* Smooth stroke updating */
+}
+
+/* Center Icon */
+.scrollIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    color: var(--color-indigo, #6366f1);
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
 }
 
+.progressWrap:hover .scrollIcon {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Responsiveness */
 @media screen and (max-width: 480px) {
-    .scrollButton {
-        bottom: 1rem;
-        right: 1rem;
-        padding: 0.6rem;
+    .progressWrap {
+        right: 1.5rem;
+        bottom: 1.5rem;
     }
 }

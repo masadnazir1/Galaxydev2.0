@@ -76,7 +76,29 @@
         font-size: clamp(1.4rem, 6vw, 2rem);
     }
 
+
     .contentSubtitle {
         font-size: 0.9rem;
+    }
+}
+
+/* Animated Gradient */
+.animatedGradient {
+    background: linear-gradient(-45deg, #ffffff, #f3e8ff, #e0e7ff, #dbeafe);
+    background-size: 300% 300%;
+    animation: gradientBG 6s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
     }
 }

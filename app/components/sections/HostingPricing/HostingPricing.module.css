@@ -1,0 +1,261 @@
+/* HostingPricing.module.css */
+
+/* Main Section */
+.pricingSection {
+  position: relative;
+  padding: 8rem 2rem;
+  overflow: hidden;
+  background: #fff;
+  /* White background as requested */
+  color: #1e293b;
+  /* Slate-800 */
+}
+
+/* Decorative Background */
+.pricingSection::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pricingSection::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtext {
+  font-size: 1.125rem;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+/* Card Styles */
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Popular Card Override */
+.cardPopular {
+  background: #fff;
+  border: 2px solid #6366f1;
+  /* Highlight border instead of dark bg */
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.cardPopular:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25);
+}
+
+.badge {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Content */
+.iconWrapper {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.planTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.planDesc {
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.priceWrapper {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.period {
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.featuresList li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #334155;
+  font-size: 1rem;
+}
+
+.checkIcon {
+  color: #4f46e5;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.action {
+  margin-top: auto;
+  width: 100%;
+}
+
+.action button {
+  width: 100%;
+  padding: 1rem !important;
+  font-size: 1rem !important;
+}
+
+/* Special button style for non-popular plans if needed */
+.btnRegular {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.btnRegular:hover {
+  border-color: #6366f1 !important;
+  color: #6366f1 !important;
+  background: #f8fafc !important;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .cardPopular {
+    transform: scale(1);
+  }
+
+  .cardPopular:hover {
+    transform: translateY(-8px);
+  }
+
+  .grid {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .pricingSection {
+    padding: 5rem 1.5rem;
+  }
+
+  .heading {
+    font-size: 2.25rem;
+  }
+}

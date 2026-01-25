@@ -81,14 +81,16 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-title" content="Galaxydev" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* JSON-LD for SEO 📈 */}
-        <Script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-          key="json-ld-localbusiness"
-        />
+        <meta name="apple-mobile-web-app-title" content="Galaxydev" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {/* JSON-LD for SEO 📈 */}
+        <Script
+          id="json-ld-localbusiness"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+        />
         <>
           <Navbar />
           {children}

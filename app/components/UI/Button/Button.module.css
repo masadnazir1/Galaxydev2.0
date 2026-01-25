@@ -1,102 +1,109 @@
+/* Button.module.css */
+
 .button {
     font-family: inherit;
-    font-weight: 600;
+    font-weight: 500;
     border: none;
     cursor: pointer;
-    border-radius: var(--radius-md);
-    transition: var(--transition-base);
+    border-radius: 50px;
+    /* Pill shape is standard modern */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-soft);
     text-decoration: none;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.02em;
 }
 
 /* === Sizes === */
 .sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.875rem;
 }
 
 .md {
-    padding: 0.8rem 1.6rem;
+    padding: 0.8rem 1.75rem;
     font-size: 1rem;
 }
 
 .lg {
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     font-size: 1.125rem;
 }
 
 /* === Variants === */
 .primary {
-    background: var(--gradient-primary);
-    color: var(--text-light);
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
 }
 
 .primary:hover {
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
     transform: translateY(-2px);
+    background: linear-gradient(135deg, #5b5ff0 0%, #7c3aed 100%);
 }
 
 .secondary {
-    background: var(--gradient-secondary);
-    color: var(--text-light);
+    background: white;
+    color: #4f46e5;
+    border: 1px solid #e2e8f0;
 }
 
 .secondary:hover {
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transform: translateY(-2px);
+    border-color: #6366f1;
 }
 
 .accent {
-    background: var(--gradient-accent);
-    color: var(--text-light);
+    background: linear-gradient(135deg, #f43f5e 0%, #fb923c 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
 }
 
 .accent:hover {
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4);
     transform: translateY(-2px);
 }
 
 .outline {
     background: transparent;
-    border: 2px solid var(--color-indigo);
-    color: var(--color-indigo);
+    border: 1px solid rgba(99, 102, 241, 0.5);
+    color: #6366f1;
+    box-shadow: none;
 }
 
 .outline:hover {
-    background: var(--gradient-primary);
-    color: var(--text-light);
-    box-shadow: var(--shadow-medium);
+    background: rgba(99, 102, 241, 0.08);
+    /* Gentle tint instead of fill */
+    border-color: #6366f1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
 }
 
 .ghost {
     background: transparent;
-    color: var(--text-dark);
+    color: #4b5563;
+    box-shadow: none;
 }
 
 .ghost:hover {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(0, 0, 0, 0.05);
+    color: #111827;
 }
 
 .danger {
-    background: linear-gradient(135deg, #ff4b2b, #ff416c);
-    color: var(--text-light);
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
 }
 
 .danger:hover {
-    filter: brightness(1.1);
-    transform: translateY(-2px);
-}
-
-.gradient {
-    background: var(--gradient-deep);
-    color: var(--text-light);
-}
-
-.gradient:hover {
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
     transform: translateY(-2px);
 }
 
@@ -107,4 +114,10 @@
     pointer-events: none;
     transform: none;
     box-shadow: none;
+    filter: grayscale(100%);
+}
+
+/* === Ripple effect hook if needed, or simply active state === */
+.button:active {
+    transform: scale(0.98);
 }

@@ -1,45 +1,91 @@
 "use client";
 
 import Image from "next/image";
+import {
+  FaClock,
+  FaGlobeAmericas,
+  FaProjectDiagram,
+  FaUserCheck,
+} from "react-icons/fa";
 import Button from "../../UI/Button/Button";
 import styles from "./TrustUs.module.css";
 
 export default function TrustUs() {
+  const stats = [
+    { number: "250+", label: "Projects Delivered", icon: <FaProjectDiagram /> },
+    { number: "98%", label: "Client Retention", icon: <FaUserCheck /> },
+    { number: "15+", label: "Countries Served", icon: <FaGlobeAmericas /> },
+    { number: "10k+", label: "Hours Saved", icon: <FaClock /> },
+  ];
+
   return (
     <section className={styles.trustSection}>
-      <div className={styles.trustWrapper}>
-        {/* Left Column */}
-        <div className={styles.trustContent}>
-          <span className={styles.roundedBox}></span>
-          <h2 className={styles.trustHeading}>Leading companies trust us</h2>
-          <h2 className={styles.trustHeading}>to develop software</h2>
-          <p className={styles.trustParagraph}>
-            We add development capacity to tech teams, helping organizations
-            accelerate their projects and achieve their goals efficiently. Our
-            value goes beyond simply building teams—we contribute strategically
-            across every stage of the project lifecycle, from planning and
-            architecture to implementation, testing, and deployment. As a
-            trusted custom software development company, we ensure the
-            successful delivery of high-quality solutions tailored to your
-            business needs. We focus on creating scalable, maintainable, and
-            innovative software that empowers companies to solve complex
-            problems and stay ahead in the competitive tech landscape.
+      {/* Decorative Background Elements */}
+      <div className={styles.bgGlow}></div>
+
+      <div className={styles.container}>
+        {/* Left Content */}
+        <div className={styles.contentColumn}>
+          <div className={styles.badge}>
+            <span className={styles.badgeLine}></span>
+            Why Choose Us
+          </div>
+
+          <h2 className={styles.heading}>
+            Leading companies <span className={styles.highlight}>trust us</span>{" "}
+            to build their future.
+          </h2>
+
+          <p className={styles.description}>
+            We don't just write code; we architect solutions. By acting as a
+            strategic extension of your team, we bridge the gap between complex
+            requirements and scalable, high-performance software.
           </p>
-          <div className={styles.buttonGroup}>
-            <Button>Explore Our Services</Button>
-            <Button variant="secondary">Visit Our Blog</Button>
+
+          <p className={styles.descriptionSecondary}>
+            From initial discovery to final deployment, our agile methodology
+            ensures transparency, efficiency, and quality at every step.
+          </p>
+
+          <div className={styles.actions}>
+            <Button className={styles.primaryBtn}>Explore Our Work</Button>
+            <Button variant="outline" className={styles.secondaryBtn}>
+              Meet the Team
+            </Button>
+          </div>
+
+          <div className={styles.statsGrid}>
+            {stats.map((stat, index) => (
+              <div key={index} className={styles.statItem}>
+                <div className={styles.statIcon}>{stat.icon}</div>
+                <div>
+                  <h4 className={styles.statNumber}>{stat.number}</h4>
+                  <p className={styles.statLabel}>{stat.label}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className={styles.trustImageWrapper}>
-          <Image
-            src="/assets/images/trust.jpg" // replace with your image path
-            alt="Trusted by leading companies"
-            width={600}
-            height={400}
-            className={styles.trustImage}
-          />
+        {/* Right Visual */}
+        <div className={styles.visualColumn}>
+          <div className={styles.imageCard}>
+            <Image
+              src="/assets/images/trust.jpg"
+              alt="Team collaboration"
+              width={600}
+              height={700}
+              className={styles.mainImage}
+            />
+            {/* Floating Card Overlay */}
+            <div className={styles.floatingCard}>
+              <div className={styles.floatingIcon}>⭐</div>
+              <div>
+                <h5>5-Star Rated</h5>
+                <p>On Clutch & Upwork</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

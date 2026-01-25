@@ -1,8 +1,11 @@
 import Head from "next/head";
+import Link from "next/link";
 import HeroSection from "./components/sections/HeroSection/HeroSection";
+import HostingPricing from "./components/sections/HostingPricing/HostingPricing";
 import ProjectsCarousel from "./components/sections/ProjectsCarousel/ProjectsCarousel";
 import ServicesSection from "./components/sections/ServicesSection/ServicesSection";
 import TrustUs from "./components/sections/TrustUs/TrustUs";
+import Button from "./components/UI/Button/Button";
 import { projectsHome } from "./data/projectsHome";
 import styles from "./page.module.css";
 
@@ -125,8 +128,33 @@ export default function Home() {
           <TrustUs />
         </section>
 
+        {/* Payment Solutions Promo */}
+        <section className={styles.sectionSpacing}>
+          <div className={styles.paymentPromo}>
+            <span className={styles.promoBadge}>New Product</span>
+            <h2>Seamless Payment Infrastructure</h2>
+            <p>
+              Accept payments, automate payouts, and manage finances with
+              GalaxyPay - The most reliable gateway for Pakistan.
+            </p>
+            <Link href="/payment-solutions">
+              <Button
+                size="lg"
+                style={{ background: "#fff", color: "#0f172a" }}
+              >
+                Explore GalaxyPay
+              </Button>
+            </Link>
+          </div>
+        </section>
+
         <section className={styles.sectionSpacing} id="services">
           <ServicesSection />
+        </section>
+
+        {/* Hosting Pricing Section */}
+        <section id="hosting">
+          <HostingPricing />
         </section>
 
         <section className={styles.sectionSpacing} id="projects">

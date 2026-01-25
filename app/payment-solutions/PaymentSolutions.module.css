@@ -1,0 +1,292 @@
+/* PaymentSolutions.module.css */
+
+.container {
+  background: #f8fafc;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* === Hero Section === */
+.hero {
+  position: relative;
+  padding: 8rem 2rem 6rem;
+  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+/* === Integration Showcase (Code Block) === */
+.codeSection {
+  margin: 4rem auto;
+  max-width: 1000px;
+  perspective: 1000px;
+}
+
+.codeWindow {
+  background: #1e293b;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transform: rotateX(2deg);
+  transition: transform 0.5s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.codeWindow:hover {
+  transform: rotateX(0);
+}
+
+.windowHeader {
+  background: #0f172a;
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dotRed {
+  background: #ef4444;
+}
+
+.dotYellow {
+  background: #eab308;
+}
+
+.dotGreen {
+  background: #22c55e;
+}
+
+.codeContent {
+  padding: 2rem;
+  text-align: left;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.keyword {
+  color: #c084fc;
+}
+
+.function {
+  color: #60a5fa;
+}
+
+.string {
+  color: #a5f3fc;
+}
+
+.comment {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* === Features Grid === */
+.featuresSection {
+  padding: 6rem 2rem;
+  background: #fff;
+}
+
+.sectionHeading {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sectionHeading h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  background: #f8fafc;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  background: #fff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: #6366f1;
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  background: #eef2ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #4f46e5;
+  margin-bottom: 1.5rem;
+}
+
+.featureCard h3 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.featureCard p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* === Waitlist Form === */
+.waitlistSection {
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.waitlistContent {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.waitlistContent h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.waitlistContent p {
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+.form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.input:focus {
+  border-color: #6366f1;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 1rem;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .codeContent {
+    font-size: 0.85rem;
+    padding: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featureCard {
+    padding: 2rem;
+  }
+}

@@ -14,12 +14,9 @@ export default function Legal() {
         title="Legal Center"
         subtitle="Transparency is key to our partnership. Read our policies below."
         align="center"
-        height="35vh"
         overlay={true}
-        overlayColor="rgba(15, 23, 42, 0.8)"
         gradientFrom="transparent"
         gradientTo="var(--background-light)"
-        bgImage="/assets/images/legal-bg.webp"
       />
 
       <main className={styles.legalPage}>
@@ -87,7 +84,7 @@ export default function Legal() {
                 <FaLock className={styles.boxIcon} />
                 <p>
                   Provide and maintain our services, communicate about project
-                  milestones, and improve our website's user experience.
+                  milestones, and improve our website&apos;s user experience.
                 </p>
               </div>
 

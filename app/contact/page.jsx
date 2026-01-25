@@ -41,12 +41,9 @@ export default function Contact() {
         title="Contact Us"
         subtitle="Ready to start your digital transformation? Let's discuss your next big project."
         align="center"
-        height="45vh"
         overlay={true}
-        overlayColor="rgba(15, 23, 42, 0.6)"
         gradientFrom="transparent"
         gradientTo="var(--background-light)"
-        bgImage="/assets/images/contact-bg.webp"
       />
 
       <main className={styles.contactPage}>

@@ -1,39 +1,50 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./HeroSection.module.css";
 import Button from "../../UI/Button/Button";
+import styles from "./HeroSection.module.css";
 
 export default function HeroSection() {
   return (
-    <section className={styles.hero}>
-      <div className={styles.textContainer}>
-        <h1 className={styles.title}>
-          Build{" "}
-          <span className={styles.highlight}>Smart Digital Solutions</span> with{" "}
-          <span className={styles.brand}>GalaxyDev.pk</span>
-        </h1>
+    <section className={styles.heroWrapper} aria-label="Introduction">
+      {/* Background Decor */}
+      <div className={styles.bgGlow} aria-hidden="true" />
 
-        <p className={styles.subtitle}>
-          Empowering businesses with full-stack web and mobile app development,
-          modern UI/UX, and cloud-native solutions built for scalability and
-          performance.
-        </p>
-        <div className={styles.ButtonWrapper}>
-          <Button> Let’s Get Started</Button>
-          <Button variant="outline"> Let’s Get Started</Button>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <h1 className={styles.title}>
+            Build{" "}
+            <span className={styles.highlight}>Smart Digital Solutions</span>{" "}
+            with <span className={styles.brand}>GalaxyDev</span>
+          </h1>
+
+          <p className={styles.description}>
+            Empowering your business with scalable Full-Stack Development, Cloud
+            Architecture, and AI-driven Mobile Applications. Partner with
+            Pakistan's leading tech experts today.
+          </p>
+
+          <div className={styles.actions}>
+            <Button className={styles.primaryBtn}>Let’s Get Started</Button>
+            <Button variant="outline" className={styles.secondaryBtn}>
+              View Portfolio
+            </Button>
+          </div>
         </div>
-      </div>
 
-      <div className={styles.imageContainer}>
-        <Image
-          src="/assets/images/Hero_image.png"
-          alt="GalaxyDev team collaboration illustration"
-          width={500}
-          height={400}
-          priority
-          className={styles.image}
-        />
+        <div className={styles.visual}>
+          <div className={styles.imageWrapper}>
+            <Image
+              src="/assets/images/Hero_image.png"
+              alt="GalaxyDev software engineering team collaborating on digital products"
+              width={600}
+              height={500}
+              priority
+              className={styles.heroImage}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -3,8 +3,10 @@
 import Image from "next/image";
 import {
   FaAward,
+  FaChartLine,
   FaCheckCircle,
   FaCloud,
+  FaCogs,
   FaHandshake,
   FaLaptopCode,
   FaLightbulb,
@@ -23,37 +25,38 @@ export default function About() {
         title="Who We Are"
         subtitle="Driving digital transformation through innovation and integrity."
         align="center"
-        height="45vh"
         overlay={true}
-        overlayColor="rgba(15, 23, 42, 0.6)" // Darker overlay for better text contrast
         gradientFrom="transparent"
-        gradientTo="var(--background-light)"
-        bgImage="/assets/images/headbg.webp"
+        gradientTo="rgba(255,255,255,0.8)"
       />
 
       <main className={styles.container}>
         {/* Hero Section */}
         <section className={styles.hero}>
           <div className={styles.heroContent}>
-            <h1 className={styles.gradientText}>About Galaxydev</h1>
+            <h1>
+              Innovating <span className={styles.gradientText}>Today</span> for
+              a Better <span className={styles.gradientText}>Tomorrow</span>
+            </h1>
             <p className={styles.leadText}>
-              Galaxydev.pk is a premier technology partner delivering scalable
+              Galaxydev is a premier technology partner delivering scalable
               software, mobile apps, and business automation tools. We empower
-              businesses in Pakistan and across the globe to transform ideas
-              into impactful digital reality.
+              businesses globally to transform ideas into impactful digital
+              reality.
             </p>
             <div className={styles.btnWrapper}>
-              <Button>Contact Us</Button>
+              <Button size="lg">Start Your Journey</Button>
             </div>
           </div>
           <div className={styles.heroImageWrapper}>
             <Image
               src="/assets/images/about.webp"
               width={600}
-              height={450}
-              alt="Galaxydev Team Working"
+              height={500}
+              alt="Galaxydev Team Collaboration"
               className={styles.heroImg}
               priority
+              quality={90}
             />
           </div>
         </section>
@@ -62,7 +65,9 @@ export default function About() {
         <section className={styles.splitSection}>
           <div className={`${styles.infoCard} ${styles.cardMission}`}>
             <div className={styles.cardHeader}>
-              <FaRocket className={styles.cardIcon} />
+              <div className={styles.cardIcon}>
+                <FaRocket />
+              </div>
               <h2>Our Mission</h2>
             </div>
             <p>
@@ -74,14 +79,16 @@ export default function About() {
           </div>
           <div className={`${styles.infoCard} ${styles.cardVision}`}>
             <div className={styles.cardHeader}>
-              <FaLightbulb className={styles.cardIcon} />
+              <div className={styles.cardIcon}>
+                <FaLightbulb />
+              </div>
               <h2>Our Vision</h2>
             </div>
             <p>
-              To be recognized as Pakistan’s most trusted technology partner,
+              To be recognized as a trusted global technology partner,
               delivering end-to-end solutions that revolutionize industries,
-              enhance productivity, and create a lasting global impact through
-              code and creativity.
+              enhance productivity, and create a lasting impact through code and
+              creativity.
             </p>
           </div>
         </section>
@@ -89,27 +96,37 @@ export default function About() {
         {/* Core Values */}
         <section className={styles.sectionCenter}>
           <h2 className={styles.sectionTitle}>Our Core Values</h2>
+          <p className={styles.sectionSubtitle}>
+            The principles that guide every line of code we write and every
+            partnership we build.
+          </p>
           <div className={styles.gridValues}>
             <div className={styles.valueCard}>
               <div className={styles.iconBox}>
                 <FaLaptopCode />
               </div>
               <h3>Innovation</h3>
-              <p>Solving complex challenges with creativity and modern tech.</p>
+              <p>
+                Solving complex challenges with creativity and modern tech
+                stacks.
+              </p>
             </div>
             <div className={styles.valueCard}>
               <div className={styles.iconBox}>
                 <FaUsers />
               </div>
               <h3>Customer Focus</h3>
-              <p>Crafting tailored solutions that maximize client ROI.</p>
+              <p>
+                Crafting tailored solutions that maximize client ROI and
+                satisfaction.
+              </p>
             </div>
             <div className={styles.valueCard}>
               <div className={styles.iconBox}>
                 <FaHandshake />
               </div>
               <h3>Integrity</h3>
-              <p>Transparency and ethics guide every line of code we write.</p>
+              <p>Transparency and ethics guide our development process.</p>
             </div>
             <div className={styles.valueCard}>
               <div className={styles.iconBox}>
@@ -130,12 +147,11 @@ export default function About() {
           <div className={styles.gridServices}>
             {[
               { icon: <FaCheckCircle />, text: "Graphic Design & Branding" },
-              { icon: <FaMobileAlt />, text: "Mobile App Dev (iOS/Android)" },
-              { icon: <FaLaptopCode />, text: "Desktop Applications" },
-              { icon: <FaLaptopCode />, text: "Ecommerce (Shopify/WP)" },
-              { icon: <FaLaptopCode />, text: "Custom Software Dev" },
-              { icon: <FaCloud />, text: "Digital Cloud Solutions" },
-              { icon: <FaCheckCircle />, text: "Workflow Automation" },
+              { icon: <FaMobileAlt />, text: "Mobile App Dev" },
+              { icon: <FaLaptopCode />, text: "Web Applications" },
+              { icon: <FaChartLine />, text: "SEO & Marketing" },
+              { icon: <FaCogs />, text: "Custom Automation" },
+              { icon: <FaCloud />, text: "Cloud Solutions" },
             ].map((service, index) => (
               <div key={index} className={styles.servicePill}>
                 <span className={styles.serviceIcon}>{service.icon}</span>
@@ -150,10 +166,10 @@ export default function About() {
           <div className={styles.historyContent}>
             <h2>Our Journey</h2>
             <p>
-              Founded in 2023, Galaxydev has evolved from an ambitious tech
+              Founded with a passion for code, Galaxydev has evolved from a
               startup to a leading solutions provider. With a reputation built
-              on reliability, we have successfully delivered hundreds of
-              projects, helping startups and enterprises alike to scale.
+              on reliability, we have successfully delivered projects for
+              startups and enterprises alike.
             </p>
           </div>
 
@@ -165,13 +181,13 @@ export default function About() {
             </div>
             <div className={styles.statItem}>
               <FaUsers className={styles.statIcon} />
-              <strong>Global</strong>
-              <span>Clients</span>
+              <strong>150+</strong>
+              <span>Happy Clients</span>
             </div>
             <div className={styles.statItem}>
               <FaAward className={styles.statIcon} />
-              <strong>100%</strong>
-              <span>Success</span>
+              <strong>99%</strong>
+              <span>Success Rate</span>
             </div>
           </div>
         </section>

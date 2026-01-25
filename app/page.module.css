@@ -9,3 +9,45 @@
   background-color: var(--foreground);
   padding: 120px 60px;
 }
+
+.paymentPromo {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  padding: 6rem 2rem;
+  text-align: center;
+  color: #fff;
+  border-radius: 24px;
+  margin: 4rem auto;
+  max-width: 1200px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.paymentPromo h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin: 0;
+}
+
+.paymentPromo p {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.promoBadge {
+  background: #6366f1;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}

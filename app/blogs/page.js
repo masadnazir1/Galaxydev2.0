@@ -92,9 +92,7 @@ export default function BlogsPage() {
       <PageHead
         title="Knowledge Hub"
         subtitle="Exploring the frontiers of code, design, and business logic."
-        bgImage="/assets/images/blogs-header.jpg"
         overlay={true}
-        overlayColor="rgba(15, 23, 42, 0.8)"
         gradientFrom="transparent"
         gradientTo="var(--background-light)"
       />

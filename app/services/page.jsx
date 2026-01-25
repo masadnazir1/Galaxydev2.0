@@ -103,12 +103,9 @@ export default function Services() {
         title="Our Services"
         subtitle="End-to-end technology solutions designed to scale your business."
         align="center"
-        height="40vh"
         overlay={true}
-        overlayColor="rgba(15, 23, 42, 0.7)"
         gradientFrom="transparent"
         gradientTo="var(--background-light)"
-        bgImage="/assets/images/services-bg.webp"
       />
 
       <main className={styles.container}>
@@ -119,11 +116,11 @@ export default function Services() {
             <span className={styles.highlight}>Modern Era</span>
           </h1>
           <p className={styles.introText}>
-            At Galaxydev, we don't just write code; we solve business problems.
-            From conceptualization to deployment, our full-stack capabilities
-            ensure that your digital ecosystem is efficient, secure, and ready
-            for growth. Explore how our specialized services can elevate your
-            brand.
+            At Galaxydev, we don&apos;t just write code; we solve business
+            problems. From conceptualization to deployment, our full-stack
+            capabilities ensure that your digital ecosystem is efficient,
+            secure, and ready for growth. Explore how our specialized services
+            can elevate your brand.
           </p>
         </section>
 

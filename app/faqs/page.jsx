@@ -74,7 +74,7 @@ export default function FAQ() {
         questions: group.questions.filter(
           (item) =>
             item.q.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.a.toLowerCase().includes(searchTerm.toLowerCase())
+            item.a.toLowerCase().includes(searchTerm.toLowerCase()),
         ),
       }))
       .filter((group) => group.questions.length > 0);
@@ -111,12 +111,9 @@ export default function FAQ() {
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions about our services, pricing, and process."
         align="center"
-        height="35vh"
         overlay={true}
-        overlayColor="rgba(15, 23, 42, 0.8)"
         gradientFrom="transparent"
         gradientTo="var(--background-light)"
-        bgImage="/assets/images/faq-bg.webp"
       />
 
       <main className={styles.faqPage}>

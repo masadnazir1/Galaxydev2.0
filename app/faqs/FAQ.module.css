@@ -45,6 +45,7 @@
   padding: 0.8rem 0;
   font-size: 1rem;
   color: var(--text-dark);
+  background: #fff;
 }
 
 /* === FAQ Groups === */
@@ -225,6 +226,7 @@
 
   .inputWrapper input {
     font-size: 0.9rem;
+    background: #fff;
   }
 
   /* Typography Scaling */

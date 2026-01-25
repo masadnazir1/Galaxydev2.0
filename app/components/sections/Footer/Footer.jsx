@@ -6,7 +6,6 @@ import { useState } from "react";
 import {
   FaFacebookF,
   FaGithub,
-  FaInstagram,
   FaLinkedinIn,
   FaPaperPlane,
   FaTimes,
@@ -26,7 +25,6 @@ export default function Footer() {
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    // Integrate API logic here
     console.log("Subscribed:", newsletterEmail);
     setNewsletterEmail("");
     alert("Thanks for subscribing!");
@@ -34,142 +32,142 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      {/* Background element for visual depth */}
-      <div className={styles.bgOverlay}></div>
+      <div className={styles.blurCircle} />
 
-      <div className={styles.footerTop}>
-        {/* Column 1: Brand & Social */}
-        <div className={styles.footerColumn}>
-          <Link href="/" className={styles.logoLink}>
-            {/* Ensure logo image exists in public folder, else use text fallback */}
-            <Image
-              src="/logofull.png"
-              width={140}
-              height={45}
-              alt="GalaxyDev Logo"
-              className={styles.logoImg}
-            />
-          </Link>
-          <p className={styles.footerDesc}>
-            Delivering innovative tech solutions, custom software, and
-            automation services to empower businesses globally.
-          </p>
-          <div className={styles.socialIcons}>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedinIn />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <FaGithub />
-            </a>
+      <div className={styles.container}>
+        <div className={styles.footerTop}>
+          {/* Brand */}
+          <div className={styles.brandColumn}>
+            <Link href="/" className={styles.logoLink}>
+              <Image
+                src="/logofull.png"
+                width={160}
+                height={50}
+                alt="GalaxyDev Logo"
+                className={styles.logoImg}
+                priority
+              />
+            </Link>
+
+            <p className={styles.brandDesc}>
+              Empowering businesses with cutting-edge software solutions, cloud
+              architecture, and digital transformation services.
+            </p>
+
+            <div className={styles.socialRow}>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+              >
+                <FaFacebookF />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Twitter"
+              >
+                <FaTwitter />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedinIn />
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+              >
+                <FaGithub />
+              </a>
+            </div>
+          </div>
+
+          {/* Links + Newsletter */}
+          <div className={styles.linksGrid}>
+            <div className={styles.linkColumn}>
+              <h4>Company</h4>
+              <ul>
+                <li>
+                  <Link href="/about">About Us</Link>
+                </li>
+                <li>
+                  <Link href="/careers">Careers</Link>
+                </li>
+                <li>
+                  <Link href="/contact">Contact</Link>
+                </li>
+                <li>
+                  <Link href="/privacy-policy">Legal</Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className={styles.linkColumn}>
+              <h4>Services</h4>
+              <ul>
+                <li>
+                  <Link href="/services">Web Development</Link>
+                </li>
+                <li>
+                  <Link href="/services">Mobile Apps</Link>
+                </li>
+                <li>
+                  <Link href="/services">Cloud Solutions</Link>
+                </li>
+                <li>
+                  <Link href="/services">UI/UX Design</Link>
+                </li>
+                <li>
+                  <Link href="/payment-solutions">Payment Gateway</Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className={styles.newsletterColumn}>
+              <h4>Stay Connected</h4>
+              <p>Join our newsletter for the latest tech insights.</p>
+
+              <form
+                onSubmit={handleNewsletterSubmit}
+                className={styles.newsForm}
+              >
+                <div className={styles.inputWrapper}>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    required
+                  />
+                  <button type="submit" aria-label="Subscribe">
+                    <FaPaperPlane />
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
 
-        {/* Column 2: Company Links */}
-        <div className={styles.footerColumn}>
-          <h4>Company</h4>
-          <ul className={styles.linkList}>
-            <li>
-              <Link href="/about">About Us</Link>
-            </li>
-            <li>
-              <Link href="/services">Our Services</Link>
-            </li>
-            <li>
-              <Link href="/careers">Careers / Join Us</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contact Us</Link>
-            </li>
-            <li>
-              <Link href="/privacy-policy">Legal Center</Link>
-            </li>
-          </ul>
-        </div>
+        <div className={styles.footerBottom}>
+          <p>© {new Date().getFullYear()} GalaxyDev.pk. All Rights Reserved.</p>
 
-        {/* Column 3: Resources & Help */}
-        <div className={styles.footerColumn}>
-          <h4>Resources</h4>
-          <ul className={styles.linkList}>
-            <li>
-              <Link href="/blogs">Tech Blog</Link>
-            </li>
-            <li>
-              <Link href="/faqs">FAQs & Support</Link>
-            </li>
-            {/* Using button for modal action */}
-            <li>
-              <button onClick={toggleContactForm} className={styles.textBtn}>
-                Quick Inquiry
-              </button>
-            </li>
-            <li>
-              <Link href="/sitemap.xml">Sitemap</Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 4: Newsletter */}
-        <div className={styles.footerColumn}>
-          <h4>Stay Updated</h4>
-          <p className={styles.newsletterText}>
-            Get the latest tech trends and company updates directly in your
-            inbox.
-          </p>
-          <form
-            onSubmit={handleNewsletterSubmit}
-            className={styles.newsletterForm}
-          >
-            <div className={styles.inputGroup}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                required
-              />
-              <button type="submit" aria-label="Subscribe">
-                <FaPaperPlane />
-              </button>
-            </div>
-          </form>
+          <div className={styles.legalLinks}>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/privacy-policy">Terms of Service</Link>
+            <Link href="/sitemap.xml">Sitemap</Link>
+          </div>
         </div>
       </div>
 
-      {/* Quick Contact Modal Overlay */}
+      {/* Quick Contact Modal */}
       {contactOpen && (
         <div className={styles.contactFormOverlay} onClick={toggleContactForm}>
           <div
@@ -182,28 +180,16 @@ export default function Footer() {
                 <FaTimes />
               </button>
             </div>
+
             <form>
               <input type="text" placeholder="Your Name" required />
               <input type="email" placeholder="Your Email" required />
-              <textarea placeholder="How can we help?" rows={4} required />
+              <textarea placeholder="Message" rows={4} required />
               <Button type="submit">Send Message</Button>
             </form>
           </div>
         </div>
       )}
-
-      {/* Footer Bottom */}
-      <div className={styles.footerBottom}>
-        <div className={styles.copyright}>
-          <p>© {new Date().getFullYear()} GalaxyDev.pk. All rights reserved.</p>
-        </div>
-        <div className={styles.footerLegal}>
-          {/* Both link to Privacy Policy page where Tabs exist */}
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <span className={styles.separator}>•</span>
-          <Link href="/privacy-policy">Terms of Service</Link>
-        </div>
-      </div>
     </footer>
   );
 }

@@ -85,12 +85,9 @@ export default function Careers() {
         title="Join Galaxydev"
         subtitle="Build software that matters. Contribute to open source. Grow your career."
         align="center"
-        height="45vh"
         overlay={true}
-        overlayColor="rgba(15, 23, 42, 0.7)"
         gradientFrom="transparent"
         gradientTo="var(--background-light)"
-        bgImage="/assets/images/careers-bg.webp"
       />
 
       <main className={styles.container}>
