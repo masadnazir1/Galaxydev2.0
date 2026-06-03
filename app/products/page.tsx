@@ -7,17 +7,17 @@ import { Badge } from "@/components/ui/Badge";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Explore Dealit, PakistanLawHelp, DeliverIt, and JKMarkaz — proprietary SaaS products built by GalaxyDev for global industries.",
+    "Explore Dealit, PakistanLawHelp, DeliverIt, and JKMarkaz — proprietary SaaS products built by GalaxyDev Pvt Ltd for global industries.",
   openGraph: {
-    title: "Products | GalaxyDev",
+    title: "Products | GalaxyDev Pvt Ltd",
     description:
-      "Proprietary SaaS products built by GalaxyDev — fleet management, legaltech, logistics, and e-commerce.",
+      "Proprietary SaaS products built by GalaxyDev Pvt Ltd — fleet management, legaltech, logistics, and e-commerce.",
     url: "https://galaxydev.pk/products",
   },
   twitter: {
-    title: "Products | GalaxyDev",
+    title: "Products | GalaxyDev Pvt Ltd",
     description:
-      "Proprietary SaaS products built by GalaxyDev — fleet management, legaltech, logistics, and e-commerce.",
+      "Proprietary SaaS products built by GalaxyDev Pvt Ltd — fleet management, legaltech, logistics, and e-commerce.",
   },
   alternates: { canonical: "https://galaxydev.pk/products" },
 };

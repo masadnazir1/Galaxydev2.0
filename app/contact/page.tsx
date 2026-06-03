@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Send, Clock, Mail, MapPin, Briefcase, Headphones, User, Loader2 } from "lucide-react";
+import { Send, Clock, Mail, Phone, MapPin, Briefcase, Headphones, User, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { GradientOrb } from "@/components/ui/GradientOrb";
 
@@ -259,12 +259,21 @@ export default function ContactPage() {
 
             <div className="lg:col-span-5 space-y-6">
               <div className="bg-bg-card border border-border-default rounded-md p-6 shadow-sm">
-                <div className="flex items-start gap-3 mb-6">
+                <div className="flex items-start gap-3 mb-4">
                   <Mail className="w-5 h-5 text-blue shrink-0 mt-0.5" />
                   <div>
                     <h3 className="font-semibold text-sm text-text-primary">Email</h3>
-                    <a href="mailto:hello@galaxydev.pk" className="text-sm text-text-secondary hover:text-blue transition-colors">
-                      hello@galaxydev.pk
+                    <a href="mailto:info@galaxydev.pk" className="text-sm text-text-secondary hover:text-blue transition-colors">
+                      info@galaxydev.pk
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 mb-4">
+                  <Phone className="w-5 h-5 text-purple shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold text-sm text-text-primary">Phone</h3>
+                    <a href="tel:+923408882796" className="text-sm text-text-secondary hover:text-blue transition-colors">
+                      +92 340 8882796
                     </a>
                   </div>
                 </div>
@@ -272,7 +281,8 @@ export default function ContactPage() {
                   <MapPin className="w-5 h-5 text-purple shrink-0 mt-0.5" />
                   <div>
                     <h3 className="font-semibold text-sm text-text-primary">Location</h3>
-                    <p className="text-sm text-text-secondary">Lahore, Pakistan</p>
+                    <p className="text-sm text-text-secondary">Lahore, Pakistan · Muzaffarabad, AJK</p>
+                    <p className="text-xs text-text-muted mt-0.5">Remote-First Team</p>
                   </div>
                 </div>
               </div>
@@ -317,12 +327,13 @@ export default function ContactPage() {
                 <div className="aspect-[4/3] bg-bg-secondary flex items-center justify-center">
                   <div className="text-center p-6">
                     <MapPin className="w-10 h-10 text-text-muted mx-auto mb-2" />
-                    <p className="text-sm text-text-muted">Map: Lahore, Pakistan</p>
+                    <p className="text-sm text-text-muted">Lahore, Pakistan · Muzaffarabad, AJK</p>
+                    <p className="text-xs text-text-muted mt-1">Remote-First Team — We work from where we thrive.</p>
                     <a
                       href="https://maps.google.com/?q=Lahore+Pakistan"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-blue hover:underline mt-1 inline-block"
+                      className="text-xs text-blue hover:underline mt-2 inline-block"
                     >
                       Open in Google Maps →
                     </a>

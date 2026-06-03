@@ -53,13 +53,13 @@ const postData: Record<string, {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = postData[slug];
-  if (!post) return { title: "Post Not Found | GalaxyDev" };
+  if (!post) return { title: "Post Not Found | GalaxyDev Pvt Ltd" };
 
   return {
     title: post.title,
     description: post.description,
     openGraph: {
-      title: `${post.title} | GalaxyDev Blog`,
+      title: `${post.title} | GalaxyDev Pvt Ltd Blog`,
       description: post.description,
       url: `https://galaxydev.pk/blog/${slug}`,
       type: "article",
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: [post.author],
     },
     twitter: {
-      title: `${post.title} | GalaxyDev Blog`,
+      title: `${post.title} | GalaxyDev Pvt Ltd Blog`,
       description: post.description,
     },
     alternates: { canonical: `https://galaxydev.pk/blog/${slug}` },
@@ -219,7 +219,7 @@ export default async function BlogPostPage({ params }: Props) {
                     <h3 className="font-display font-semibold text-lg text-text-primary text-center mb-1">
                       {post.author}
                     </h3>
-                    <p className="text-sm text-text-muted text-center mb-4">Staff Engineer at GalaxyDev</p>
+                    <p className="text-sm text-text-muted text-center mb-4">Staff Engineer at GalaxyDev Pvt Ltd</p>
                     <p className="text-sm text-text-secondary text-center">
                       Building SaaS platforms and sharing lessons from the trenches.
                     </p>

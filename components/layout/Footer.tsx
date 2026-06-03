@@ -54,11 +54,11 @@ export function Footer() {
                   </linearGradient>
                 </defs>
               </svg>
-              <span className="font-display font-semibold text-xl">GalaxyDev</span>
+              <span className="font-display font-semibold text-xl">GalaxyDev <span className="text-xs font-medium text-[#94A3B8]">Pvt Ltd</span></span>
             </Link>
             <p className="text-[#94A3B8] text-sm leading-relaxed max-w-xs">
-              A premier Pakistani software house building enterprise-grade SaaS platforms, custom
-              software, and digital products for global clients.
+              A remote-first Pakistani software house building enterprise-grade SaaS platforms, custom
+              software, and digital products for global clients — from Pakistan &amp; AJK.
             </p>
           </div>
 

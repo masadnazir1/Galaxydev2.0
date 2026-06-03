@@ -5,6 +5,7 @@ const staticPages = [
   { url: "", priority: 1.0, changeFrequency: "monthly" as const },
   { url: "/services", priority: 0.9, changeFrequency: "monthly" as const },
   { url: "/products", priority: 0.9, changeFrequency: "monthly" as const },
+  { url: "/products/kashmirbook", priority: 0.8, changeFrequency: "monthly" as const },
   { url: "/blog", priority: 0.8, changeFrequency: "weekly" as const },
   { url: "/about", priority: 0.7, changeFrequency: "monthly" as const },
   { url: "/contact", priority: 0.7, changeFrequency: "yearly" as const },

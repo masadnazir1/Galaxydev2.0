@@ -18,17 +18,17 @@ import { Badge } from "@/components/ui/Badge";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "GalaxyDev offers UI/UX design, custom software development, SaaS platforms, e-commerce solutions, mobile apps, digital marketing, video editing, and digital transformation consulting.",
+    "GalaxyDev Pvt Ltd — a remote-first software house from Pakistan & AJK — offers UI/UX design, custom software development, SaaS platforms, e-commerce solutions, mobile apps, digital marketing, video editing, and digital transformation consulting.",
   openGraph: {
-    title: "Services | GalaxyDev",
+    title: "Services | GalaxyDev Pvt Ltd",
     description:
-      "Full-spectrum product engineering, digital marketing, and video production services from Pakistan's premier software house.",
+      "Full-spectrum product engineering, digital marketing, and video production services from Pakistan & AJK's remote-first software house.",
     url: "https://galaxydev.pk/services",
   },
   twitter: {
-    title: "Services | GalaxyDev",
+    title: "Services | GalaxyDev Pvt Ltd",
     description:
-      "Full-spectrum product engineering services from Pakistan's premier software house.",
+      "Full-spectrum product engineering services from Pakistan & AJK's remote-first software house.",
   },
   alternates: { canonical: "https://galaxydev.pk/services" },
 };

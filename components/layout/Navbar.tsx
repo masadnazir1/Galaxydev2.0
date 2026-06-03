@@ -68,7 +68,7 @@ export function Navbar() {
               </linearGradient>
             </defs>
           </svg>
-          <span className="font-display font-semibold text-xl text-text-primary">GalaxyDev</span>
+          <span className="font-display font-semibold text-xl text-text-primary">GalaxyDev <span className="text-xs font-medium text-text-muted hidden sm:inline">Pvt Ltd</span></span>
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">

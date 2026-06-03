@@ -6,17 +6,17 @@ import { GradientOrb } from "@/components/ui/GradientOrb";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "GalaxyDev is a premier Pakistani software house building enterprise-grade SaaS platforms and digital products for global clients. Learn our story, mission, and values.",
+    "GalaxyDev Pvt Ltd is a remote-first Pakistani software house building enterprise-grade SaaS platforms and digital products for global clients — from Pakistan & AJK. Learn our story, mission, and values.",
   openGraph: {
-    title: "About | GalaxyDev",
+    title: "About | GalaxyDev Pvt Ltd",
     description:
-      "Learn about GalaxyDev — Pakistan's premier software house building enterprise SaaS for global clients.",
+      "Learn about GalaxyDev Pvt Ltd — Pakistan & AJK's remote-first software house building enterprise SaaS for global clients.",
     url: "https://galaxydev.pk/about",
   },
   twitter: {
-    title: "About | GalaxyDev",
+    title: "About | GalaxyDev Pvt Ltd",
     description:
-      "Learn about GalaxyDev — Pakistan's premier software house building enterprise SaaS for global clients.",
+      "Learn about GalaxyDev Pvt Ltd — Pakistan & AJK's remote-first software house building enterprise SaaS for global clients.",
   },
   alternates: { canonical: "https://galaxydev.pk/about" },
 };
@@ -55,9 +55,21 @@ const milestones = [
 ];
 
 const leaders = [
-  { name: "Ali Hassan", title: "CEO & Co-Founder" },
-  { name: "Fatima Ahmed", title: "CTO & Co-Founder" },
-  { name: "Zainab Ali", title: "VP of Design" },
+  {
+    name: "M Asad Nazir",
+    title: "Founder & CEO",
+    subtitle: "Product Visionary · Tech Entrepreneur · Software Engineer",
+  },
+  {
+    name: "Ahmed Mujtaba",
+    title: "CTO & Solution Architect",
+    subtitle: "Senior Software Engineer · System Architect · Full-Stack",
+  },
+  {
+    name: "Hassan Shehzad",
+    title: "Cloud Expert & DevOps Lead",
+    subtitle: "AWS/Azure · Kubernetes · CI/CD · Infrastructure as Code",
+  },
 ];
 
 const values = [
@@ -169,10 +181,11 @@ export default function AboutPage() {
                 className="text-center bg-bg-card border border-border-default rounded-md p-8 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue to-purple flex items-center justify-center text-2xl font-bold text-white">
-                  {person.name.split(" ").map((n) => n[0]).join("")}
+                  {person.name.split(" ").filter(Boolean).map((n) => n[0]).join("")}
                 </div>
                 <h3 className="font-display font-semibold text-lg text-text-primary">{person.name}</h3>
-                <p className="text-sm text-text-muted mb-4">{person.title}</p>
+                <p className="text-sm font-semibold text-text-primary mb-1">{person.title}</p>
+                <p className="text-xs text-text-muted mb-4 leading-relaxed">{person.subtitle}</p>
                   <a
                     href="https://linkedin.com"
                     target="_blank"

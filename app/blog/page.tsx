@@ -7,17 +7,17 @@ import { GradientOrb } from "@/components/ui/GradientOrb";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Engineering notes, product insights, and thought leadership from the GalaxyDev team on SaaS, software architecture, and tech in Pakistan.",
+    "Engineering notes, product insights, and thought leadership from the GalaxyDev Pvt Ltd team on SaaS, software architecture, and tech in Pakistan.",
   openGraph: {
-    title: "Blog | GalaxyDev",
+    title: "Blog | GalaxyDev Pvt Ltd",
     description:
-      "Engineering notes, product insights, and thought leadership from the GalaxyDev team.",
+      "Engineering notes, product insights, and thought leadership from the GalaxyDev Pvt Ltd team.",
     url: "https://galaxydev.pk/blog",
   },
   twitter: {
-    title: "Blog | GalaxyDev",
+    title: "Blog | GalaxyDev Pvt Ltd",
     description:
-      "Engineering notes, product insights, and thought leadership from the GalaxyDev team.",
+      "Engineering notes, product insights, and thought leadership from the GalaxyDev Pvt Ltd team.",
   },
   alternates: { canonical: "https://galaxydev.pk/blog" },
 };

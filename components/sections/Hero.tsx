@@ -3,20 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { GradientOrb } from "@/components/ui/GradientOrb";
 
 const floatingBadges = [
   { label: "99.9% Uptime", x: "70%", y: "20%", delay: "0s" },
-  { label: "50+ Projects", x: "80%", y: "55%", delay: "0.5s" },
-  { label: "4 Products", x: "65%", y: "75%", delay: "1s" },
+  { label: "Remote First", x: "78%", y: "50%", delay: "0.5s" },
+  { label: "Built in AJK", x: "65%", y: "75%", delay: "1s" },
 ];
+
+const locations = ["Pakistan", "Azad Kashmir", "Gilgit Baltistan"];
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
+  const [location, setLocation] = useState(locations[0]);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setMounted(true);
+    const interval = setInterval(() => {
+      const next = locations[Math.floor(Math.random() * locations.length)];
+      setLocation(next);
+    }, 2500);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -37,7 +46,7 @@ export function Hero() {
               }`}
             >
               <span className="w-2 h-2 rounded-full bg-blue animate-pulse" />
-              Enterprise Software · Built in Pakistan
+              Remote First · Built in Pakistan &amp; AJK
             </div>
 
             <h1
@@ -45,7 +54,22 @@ export function Hero() {
                 mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              Building Pakistan&apos;s
+              Building{" "}
+              <span className="gradient-text inline-block relative">
+                <AnimatePresence mode="popLayout">
+                  <motion.span
+                    key={location}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="inline-block"
+                  >
+                    {location}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+              &apos;s
               <br />
               <span className="gradient-text">Digital Future</span>
             </h1>
@@ -56,7 +80,7 @@ export function Hero() {
               }`}
             >
               We architect and ship enterprise-grade SaaS platforms, custom software, and digital
-              products that power businesses across the globe — from the heart of Pakistan.
+              products that power businesses across the globe — remote-first, from Pakistan &amp; AJK.
             </p>
 
             <div

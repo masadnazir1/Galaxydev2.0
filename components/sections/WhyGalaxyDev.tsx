@@ -30,9 +30,9 @@ const pillars = [
   },
   {
     icon: Globe,
-    title: "Pakistan's Global Standard",
+    title: "Remote-First · Pakistan & AJK",
     description:
-      "We combine local talent, global best practices, and competitive rates to deliver world-class software that competes on quality, not cost.",
+      "We combine local talent across Pakistan & AJK with global best practices and competitive rates to deliver world-class software — remotely, on quality, not cost.",
   },
 ];
 

@@ -18,17 +18,17 @@ export function generatePageMetadata({
     title,
     description,
     openGraph: {
-      title: `${title} | GalaxyDev`,
+      title: `${title} | GalaxyDev Pvt Ltd`,
       description,
       url,
-      siteName: "GalaxyDev",
+      siteName: "GalaxyDev Pvt Ltd",
       locale: "en_US",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | GalaxyDev`,
+      title: `${title} | GalaxyDev Pvt Ltd`,
       description,
       images: [ogImage],
     },
@@ -39,16 +39,22 @@ export function generatePageMetadata({
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "GalaxyDev",
+  name: "GalaxyDev Pvt Ltd",
   url: "https://galaxydev.pk",
   logo: "https://galaxydev.pk/og-image.png",
   description:
-    "Premier Pakistani software house building enterprise-grade SaaS platforms and digital products.",
+    "Remote-first Pakistani software house building enterprise-grade SaaS platforms and digital products — from Pakistan & AJK.",
   foundingDate: "2020",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Lahore",
     addressCountry: "PK",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+92-340-8882796",
+    contactType: "sales",
+    email: "info@galaxydev.pk",
   },
   sameAs: [
     "https://linkedin.com/company/galaxydev",

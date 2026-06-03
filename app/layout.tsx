@@ -28,27 +28,68 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "GalaxyDev — Enterprise Software & Tech Products",
-    template: "%s | GalaxyDev",
+    default: "GalaxyDev Pvt Ltd — Enterprise Software & Tech Products",
+    template: "%s | GalaxyDev Pvt Ltd",
   },
   description:
-    "GalaxyDev is a premier Pakistani software house building enterprise-grade SaaS platforms, custom software, and digital products for global clients.",
+    "GalaxyDev Pvt Ltd is a remote-first Pakistani software house building enterprise-grade SaaS platforms, custom software, and digital products for global clients — from Pakistan & AJK.",
   openGraph: {
-    title: "GalaxyDev — Enterprise Software & Tech Products",
+    title: "GalaxyDev Pvt Ltd — Enterprise Software & Tech Products",
     description:
-      "Premier Pakistani software house building enterprise SaaS, custom software, and digital products.",
+      "Remote-first Pakistani software house building enterprise SaaS, custom software, and digital products — from Pakistan & AJK.",
     url: "https://galaxydev.pk",
-    siteName: "GalaxyDev",
+    siteName: "GalaxyDev Pvt Ltd",
     locale: "en_US",
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GalaxyDev — Enterprise Software & Tech Products",
+    title: "GalaxyDev Pvt Ltd — Enterprise Software & Tech Products",
     description:
-      "Premier Pakistani software house building enterprise SaaS, custom software, and digital products.",
+      "Remote-first Pakistani software house building enterprise SaaS, custom software, and digital products — from Pakistan & AJK.",
     images: ["/og-image.png"],
+  },
+  other: {
+    "application/ld+json": JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "GalaxyDev Pvt Ltd",
+      alternateName: "GalaxyDev",
+      url: "https://galaxydev.pk",
+      logo: "https://galaxydev.pk/og-image.png",
+      description:
+        "Premier Pakistani software house building enterprise-grade SaaS platforms and digital products.",
+      foundingDate: "2020",
+      founders: [{ "@type": "Person", name: "Ali Hassan" }],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Lahore",
+        addressLocality: "Lahore",
+        addressCountry: "PK",
+      },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+92-340-8882796",
+          contactType: "sales",
+          email: "info@galaxydev.pk",
+          availableLanguage: ["en", "ur"],
+        },
+        {
+          "@type": "ContactPoint",
+          telephone: "+92-340-8882796",
+          contactType: "customer support",
+          email: "support@galaxydev.pk",
+          availableLanguage: ["en", "ur"],
+        },
+      ],
+      sameAs: [
+        "https://linkedin.com/company/galaxydev",
+        "https://github.com/galaxydev",
+        "https://x.com/galaxydev",
+      ],
+    }),
   },
   robots: { index: true, follow: true },
   metadataBase: new URL("https://galaxydev.pk"),
