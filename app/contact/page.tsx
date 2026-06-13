@@ -31,11 +31,11 @@ const services = [
 ];
 
 const budgetRanges = [
-  "Under $10,000",
-  "$10,000 – $25,000",
-  "$25,000 – $50,000",
-  "$50,000 – $100,000",
-  "$100,000+",
+  "Under PKR 10,000",
+  "PKR 10,000 – PKR 25,000",
+  "PKR 25,000 – PKR 50,000",
+  "PKR 50,000 – PKR 100,000",
+  "PKR 100,000+",
   "Not sure yet",
 ];
 
@@ -72,9 +72,42 @@ export default function ContactPage() {
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = async (_data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormData) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_NOTIFY_API_URL || "http://localhost:4000/api/notify",
+        {
+          method: "POST",
+          headers: {
+            accept: "application/json",
+            "X-API-Key":
+              process.env.NEXT_PUBLIC_NOTIFY_API_KEY || "",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            channels: ["email"],
+            email: {
+              emailSendId:
+                process.env.NEXT_PUBLIC_EMAIL_SEND_ID || "no-reply@galaxydev.pk",
+              to: ["masadnazir1@gmail.com"],
+              subject: "New Contact Form Submission — GalaxyDev",
+              body: `<h1>New Inquiry</h1><p>From: ${data.fullName}</p>`,
+              templateId: "send-project-galaxydev",
+              templateVars: {
+                fullName: data.fullName,
+                email: data.email,
+                company: data.company,
+                service: data.service,
+                budgetRange: data.budget || "Not specified",
+                message: data.message,
+              },
+            },
+          }),
+        }
+      );
+
+      if (!res.ok) throw new Error("Failed to send");
+
       setSubmitted(true);
       setSubmitError(false);
     } catch {
