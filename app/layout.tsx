@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       name: "GalaxyDev Pvt Ltd",
       alternateName: "GalaxyDev",
       url: "https://galaxydev.pk",
-      logo: "https://galaxydev.pk/og-image.png",
+      logo: "https://galaxydev.pk/logo.png",
       description:
         "Premier Pakistani software house building enterprise-grade SaaS platforms and digital products.",
       foundingDate: "2020",

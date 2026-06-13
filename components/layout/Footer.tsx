@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const services = [
   { label: "UI/UX Design", href: "/services" },
@@ -33,28 +34,15 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
           <div className="sm:col-span-2 lg:col-span-4">
             <Link href="/" className="flex items-center gap-2 mb-4" aria-label="GalaxyDev Home">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 36 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <Image
+                src="/logo.png"
+                alt="GalaxyDev"
+                width={200}
+                height={150}
+                className="rounded-lg"
                 aria-hidden="true"
-              >
-                <rect width="36" height="36" rx="8" fill="url(--logo-grad-f)" />
-                <path
-                  d="M10 26V10h4.5l3.5 8.5L21.5 10H26v16h-4V17.5l-3.5 8h-1l-3.5-8V26H10z"
-                  fill="white"
-                />
-                <defs>
-                  <linearGradient id="--logo-grad-f" x1="0" y1="0" x2="36" y2="36">
-                    <stop stopColor="#2693FF" />
-                    <stop offset="0.5" stopColor="#7C41FF" />
-                    <stop offset="1" stopColor="#E014EC" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <span className="font-display font-semibold text-xl">GalaxyDev <span className="text-xs font-medium text-[#94A3B8]">Pvt Ltd</span></span>
+              />
+              <span className="font-display font-semibold text-xl"> </span>
             </Link>
             <p className="text-[#94A3B8] text-sm leading-relaxed max-w-xs">
               A remote-first Pakistani software house building enterprise-grade SaaS platforms, custom
