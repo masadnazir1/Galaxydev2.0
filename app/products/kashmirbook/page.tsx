@@ -179,7 +179,7 @@ export default function KashmirBookPage() {
                   <span className="text-xs text-text-muted ml-2">KashmirBook — Homepage</span>
                 </div>
                 <Image
-                  src="/images/kashmirbook-hero.svg"
+                  src="/images/kashmirbook-hero.png"
                   alt="KashmirBook Platform Screenshot"
                   width={800}
                   height={500}
@@ -289,7 +289,7 @@ export default function KashmirBookPage() {
                   <span className="text-xs text-text-muted ml-2">KashmirBook Editor</span>
                 </div>
                 <Image
-                  src="/images/kashmirbook-editor.svg"
+                  src="/images/kashmirbook-editor.png"
                   alt="KashmirBook Editor Interface"
                   width={800}
                   height={500}
@@ -344,7 +344,7 @@ export default function KashmirBookPage() {
                   <span className="text-xs text-text-muted ml-2">KashmirBook — Audio Rooms</span>
                 </div>
                 <Image
-                  src="/images/kashmirbook-audio.svg"
+                  src="/images/kashmirbook-audio.png"
                   alt="KashmirBook Audio Rooms Interface"
                   width={800}
                   height={500}
