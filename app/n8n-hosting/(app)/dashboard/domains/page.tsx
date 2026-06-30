@@ -115,7 +115,7 @@ export default function DomainsPage() {
           <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
             Domains
           </Typography>
-          <Typography variant="body2" sx={{ color: "#94A3B8" }}>
+          <Typography variant="body2" sx={{ color: colors.textSecondary }}>
             Manage your custom domains
           </Typography>
         </Box>
@@ -229,7 +229,7 @@ export default function DomainsPage() {
                 transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
                 style={{ width: 48, height: 48, margin: "0 auto 16px", border: "3px solid rgba(38,147,255,0.1)", borderTopColor: "#2693FF", borderRadius: "50%" }}
               />
-              <Typography variant="body2" sx={{ color: "#94A3B8" }}>
+              <Typography variant="body2" sx={{ color: colors.textSecondary }}>
                 Verifying DNS configuration...
               </Typography>
             </Box>
@@ -243,11 +243,11 @@ export default function DomainsPage() {
                 onChange={(e) => setDomainInput(e.target.value)}
                 autoFocus
               />
-              <Box sx={{ p: 2.5, borderRadius: 2, background: "rgba(38,147,255,0.05)", border: "1px solid rgba(38,147,255,0.12)" }}>
+              <Box sx={{ p: 2.5, borderRadius: 2, background: colors.iconBg("#2693FF"), border: `1px solid ${dark ? "rgba(38,147,255,0.12)" : "rgba(38,147,255,0.3)"}` }}>
                 <Typography variant="caption" sx={{ color: "#2693FF", fontWeight: 600, display: "block", mb: 1.5 }}>
                   DNS Configuration
                 </Typography>
-                <Typography variant="caption" sx={{ color: "#94A3B8", display: "block", mb: 1 }}>
+                <Typography variant="caption" sx={{ color: colors.textSecondary, display: "block", mb: 1 }}>
                   Add this CNAME record to your DNS provider:
                 </Typography>
                 <Box
@@ -257,18 +257,18 @@ export default function DomainsPage() {
                     background: "rgba(0,0,0,0.2)",
                     fontFamily: "monospace",
                     fontSize: "0.8125rem",
-                    color: "#CBD5E1",
+                    color: colors.textPrimary,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
                   }}
                 >
                   <Box>
-                    <Typography variant="caption" sx={{ color: "#64748B", fontFamily: "monospace" }}>Type: </Typography>CNAME
+                    <Typography variant="caption" sx={{ color: colors.textMuted, fontFamily: "monospace" }}>Type: </Typography>CNAME
                     {"  "}
-                    <Typography variant="caption" sx={{ color: "#64748B", fontFamily: "monospace" }}>Name: </Typography>@
+                    <Typography variant="caption" sx={{ color: colors.textMuted, fontFamily: "monospace" }}>Name: </Typography>@
                     {"  "}
-                    <Typography variant="caption" sx={{ color: "#64748B", fontFamily: "monospace" }}>Value: </Typography>your-name.n8n.galaxydev.pk
+                    <Typography variant="caption" sx={{ color: colors.textMuted, fontFamily: "monospace" }}>Value: </Typography>your-name.n8n.galaxydev.pk
                   </Box>
                   <IconButton
                     size="small"
@@ -276,7 +276,7 @@ export default function DomainsPage() {
                       navigator.clipboard.writeText("CNAME @ your-name.n8n.galaxydev.pk");
                       setSnackbar({ open: true, message: "DNS config copied" });
                     }}
-                    sx={{ color: "#64748B" }}
+                    sx={{ color: colors.textMuted }}
                   >
                     <Copy size={14} />
                   </IconButton>

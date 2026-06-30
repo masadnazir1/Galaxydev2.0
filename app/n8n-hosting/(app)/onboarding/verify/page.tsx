@@ -16,7 +16,8 @@ import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { useN8n } from "@/lib/n8n-context";
 import { n8nLightTheme } from "@/lib/n8n-theme";
 
-const VALID_OTP = "123456";
+const OTP_LENGTH = 4;
+const VALID_OTP = "1234";
 const COUNTDOWN_SECONDS = 30;
 
 function VerifyContent() {
@@ -24,7 +25,7 @@ function VerifyContent() {
   const searchParams = useSearchParams();
   const { onboarding } = useN8n();
   const email = onboarding?.email || searchParams.get("email") || "";
-  const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
+  const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [resendCountdown, setResendCountdown] = useState(COUNTDOWN_SECONDS);
@@ -55,12 +56,12 @@ function VerifyContent() {
     newOtp[index] = value.slice(-1);
     setOtp(newOtp);
 
-    if (value && index < 5) {
+    if (value && index < OTP_LENGTH - 1) {
       inputRefs.current[index + 1]?.focus();
     }
 
     const fullOtp = newOtp.join("");
-    if (fullOtp.length === 6) {
+    if (fullOtp.length === OTP_LENGTH) {
       verifyOtp(fullOtp);
     }
   };
@@ -73,15 +74,15 @@ function VerifyContent() {
 
   const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
+    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, OTP_LENGTH);
     if (!pasted) return;
-    const newOtp = pasted.split("").concat(Array(6 - pasted.length).fill(""));
+    const newOtp = pasted.split("").concat(Array(OTP_LENGTH - pasted.length).fill(""));
     setOtp(newOtp);
     setError("");
-    const nextIndex = Math.min(pasted.length, 5);
-    inputRefs.current[pasted.length >= 6 ? 5 : pasted.length]?.focus();
+    const nextIndex = Math.min(pasted.length, OTP_LENGTH - 1);
+    inputRefs.current[pasted.length >= OTP_LENGTH ? OTP_LENGTH - 1 : pasted.length]?.focus();
 
-    if (pasted.length === 6) {
+    if (pasted.length === OTP_LENGTH) {
       verifyOtp(pasted);
     }
   };
@@ -93,8 +94,8 @@ function VerifyContent() {
         router.push("/n8n-hosting/dashboard");
       }, 1200);
     } else {
-      setError("Invalid code. Try 123456.");
-      setOtp(Array(6).fill(""));
+      setError(`Invalid code. Try ${VALID_OTP}.`);
+      setOtp(Array(OTP_LENGTH).fill(""));
       inputRefs.current[0]?.focus();
     }
   };
@@ -102,7 +103,7 @@ function VerifyContent() {
   const handleResend = () => {
     setResendDisabled(true);
     setResendCountdown(COUNTDOWN_SECONDS);
-    setOtp(Array(6).fill(""));
+    setOtp(Array(OTP_LENGTH).fill(""));
     setError("");
     inputRefs.current[0]?.focus();
   };
@@ -192,7 +193,15 @@ function VerifyContent() {
               >
                 Verify your email
               </Typography>
-              <Typography variant="body2" sx={{ color: "#64748B" }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#64748B",
+                  px: { xs: 1, sm: 0 },
+                  overflowWrap: "break-word",
+                  fontSize: { xs: "0.8125rem", sm: "0.875rem" },
+                }}
+              >
                 We sent a code to{" "}
                 <Box component="span" sx={{ color: "#0F172A", fontWeight: 500 }}>
                   {email}
@@ -239,7 +248,7 @@ function VerifyContent() {
                     <Box
                       sx={{
                         display: "flex",
-                        gap: { xs: 1, sm: 1.5 },
+                        gap: { xs: 0.5, sm: 1, md: 1.5 },
                         justifyContent: "center",
                         mb: 3,
                       }}
@@ -262,7 +271,7 @@ function VerifyContent() {
                             onKeyDown={(e) => handleKeyDown(i, e)}
                             onPaste={i === 0 ? handlePaste : undefined}
                             style={{
-                              width: 48,
+                              width: 52,
                               height: 56,
                               textAlign: "center",
                               fontSize: "1.25rem",
@@ -308,7 +317,7 @@ function VerifyContent() {
                         variant="contained"
                         fullWidth
                         size="large"
-                        disabled={otp.join("").length < 6}
+                        disabled={otp.join("").length < OTP_LENGTH}
                         onClick={() => verifyOtp(otp.join(""))}
                         endIcon={<ArrowRight size={18} />}
                         sx={{

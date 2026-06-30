@@ -39,7 +39,7 @@ export default function SettingsPage() {
       <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
         Settings
       </Typography>
-      <Typography variant="body2" sx={{ color: "#94A3B8", mb: 4 }}>
+      <Typography variant="body2" sx={{ color: colors.textSecondary, mb: 4 }}>
         Manage your account settings
       </Typography>
 
@@ -82,7 +82,7 @@ export default function SettingsPage() {
           sx={{
             p: 4,
             maxWidth: 600,
-            border: "1px solid rgba(239,68,68,0.2)",
+            border: `1px solid ${dark ? "rgba(239,68,68,0.2)" : "rgba(239,68,68,0.3)"}`,
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
@@ -91,7 +91,7 @@ export default function SettingsPage() {
               Danger Zone
             </Typography>
           </Box>
-          <Typography variant="body2" sx={{ color: "#94A3B8", mb: 3 }}>
+          <Typography variant="body2" sx={{ color: colors.textSecondary, mb: 3 }}>
             Once you delete your account, there is no going back. Please be certain.
           </Typography>
           <Button
@@ -112,7 +112,7 @@ export default function SettingsPage() {
           Delete Account?
         </DialogTitle>
         <DialogContent>
-          <Typography variant="body2" sx={{ color: "#94A3B8" }}>
+          <Typography variant="body2" sx={{ color: colors.textSecondary }}>
             This will permanently delete your account and all associated data, including
             your n8n instances, domains, and billing history.
           </Typography>

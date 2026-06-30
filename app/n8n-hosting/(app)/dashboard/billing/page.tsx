@@ -55,7 +55,7 @@ export default function BillingPage() {
       <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
         Billing
       </Typography>
-      <Typography variant="body2" sx={{ color: "#94A3B8", mb: 4 }}>
+      <Typography variant="body2" sx={{ color: colors.textSecondary, mb: 4 }}>
         Manage your subscription and payment methods
       </Typography>
 
@@ -70,7 +70,7 @@ export default function BillingPage() {
             <Card sx={{ p: 4, mb: 3 }}>
               <Box sx={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", mb: 3 }}>
                 <Box>
-                  <Typography variant="overline" sx={{ color: "#64748B", letterSpacing: "0.1em", fontSize: "0.75rem" }}>
+                  <Typography variant="overline" sx={{ color: colors.textMuted, letterSpacing: "0.1em", fontSize: "0.75rem" }}>
                     Current Plan
                   </Typography>
                   <Typography variant="h5" sx={{ fontWeight: 700, mt: 0.5 }}>
@@ -88,7 +88,7 @@ export default function BillingPage() {
                 />
               </Box>
 
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3, color: "#94A3B8" }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3, color: colors.textSecondary }}>
                 <Clock size={16} />
                 <Typography variant="body2">
                   Trial ends in 2 days 14 hours —{" "}
@@ -98,7 +98,7 @@ export default function BillingPage() {
                 </Typography>
               </Box>
 
-              <Box sx={{ p: 3, borderRadius: 2, background: "rgba(255,255,255,0.03)" }}>
+              <Box sx={{ p: 3, borderRadius: 2, background: colors.cardBg }}>
                 <Typography variant="subtitle2" sx={{ mb: 2 }}>
                   What&apos;s included
                 </Typography>
@@ -113,7 +113,7 @@ export default function BillingPage() {
                     <Grid size={{ xs: 12, sm: 6 }} key={i}>
                       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                         <CheckCircle size={14} style={{ color: "#22C55E" }} />
-                        <Typography variant="body2" sx={{ color: "#CBD5E1" }}>
+                        <Typography variant="body2" sx={{ color: colors.textPrimary }}>
                           {feature}
                         </Typography>
                       </Box>
@@ -125,7 +125,7 @@ export default function BillingPage() {
 
             {/* Invoice History */}
             <Card sx={{ p: 0, overflow: "hidden" }}>
-              <Box sx={{ p: 3, pb: 2, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+              <Box sx={{ p: 3, pb: 2, borderBottom: `1px solid ${colors.border}` }}>
                 <Typography variant="h6" sx={{ fontWeight: 600 }}>
                   Invoice History
                 </Typography>
@@ -150,7 +150,7 @@ export default function BillingPage() {
                           </Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{ color: "#94A3B8" }}>
+                          <Typography variant="body2" sx={{ color: colors.textSecondary }}>
                             {inv.date}
                           </Typography>
                         </TableCell>
@@ -193,7 +193,7 @@ export default function BillingPage() {
             transition={{ duration: 0.4, delay: 0.1 }}
           >
             <Card sx={{ p: 3 }}>
-              <Typography variant="overline" sx={{ color: "#64748B", letterSpacing: "0.1em", fontSize: "0.75rem" }}>
+              <Typography variant="overline" sx={{ color: colors.textMuted, letterSpacing: "0.1em", fontSize: "0.75rem" }}>
                 Payment Method
               </Typography>
               <Box
@@ -201,12 +201,12 @@ export default function BillingPage() {
                   mt: 2,
                   p: 3,
                   borderRadius: 2,
-                  border: "2px dashed rgba(255,255,255,0.08)",
+                  border: `2px dashed ${colors.border}`,
                   textAlign: "center",
                 }}
               >
-                <CreditCard size={32} style={{ color: "#64748B", margin: "0 auto 12px", opacity: 0.5 }} />
-                <Typography variant="body2" sx={{ color: "#94A3B8", mb: 2 }}>
+                <CreditCard size={32} style={{ color: colors.textMuted, margin: "0 auto 12px", opacity: 0.5 }} />
+                <Typography variant="body2" sx={{ color: colors.textSecondary, mb: 2 }}>
                   No payment method added
                 </Typography>
                 <Button
@@ -218,7 +218,7 @@ export default function BillingPage() {
                   Add Payment Method
                 </Button>
               </Box>
-              <Typography variant="caption" sx={{ color: "#64748B", display: "block", mt: 2, textAlign: "center" }}>
+              <Typography variant="caption" sx={{ color: colors.textMuted, display: "block", mt: 2, textAlign: "center" }}>
                 You won&apos;t be charged until your trial ends
               </Typography>
             </Card>
