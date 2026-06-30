@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Sora, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { AppShell } from "./AppShell";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { n8nLightTheme } from "@/lib/n8n-theme";
 
 const sora = Sora({
   variable: "--font-display",
@@ -107,10 +108,10 @@ export default function RootLayout({
       className={`${sora.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <ScrollToTop />
+        <ThemeProvider theme={n8nLightTheme}>
+          <CssBaseline />
+          <AppShell>{children}</AppShell>
+        </ThemeProvider>
       </body>
     </html>
   );

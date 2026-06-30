@@ -73,44 +73,54 @@ export default function ContactPage() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    try {
-      const res = await fetch(
-        process.env.NEXT_PUBLIC_NOTIFY_API_URL || "http://localhost:4000/api/notify",
-        {
-          method: "POST",
-          headers: {
-            accept: "application/json",
-            "X-API-Key":
-              process.env.NEXT_PUBLIC_NOTIFY_API_KEY || "",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            channels: ["email"],
-            email: {
-              emailSendId:
-                process.env.NEXT_PUBLIC_EMAIL_SEND_ID || "no-reply@galaxydev.pk",
-              to: ["masadnazir1@gmail.com"],
-              subject: "New Contact Form Submission — GalaxyDev",
-              body: `<h1>New Inquiry</h1><p>From: ${data.fullName}</p>`,
-              templateId: "send-project-galaxydev",
-              templateVars: {
-                fullName: data.fullName,
-                email: data.email,
-                company: data.company,
-                service: data.service,
-                budgetRange: data.budget || "Not specified",
-                message: data.message,
-              },
-            },
-          }),
-        }
-      );
+    const url =
+      process.env.NEXT_PUBLIC_NOTIFY_API_URL || "https://gnotify-api.galaxydev.pk/api/notify";
+    const apiKey = process.env.NEXT_PUBLIC_NOTIFY_API_KEY || "";
+    const emailSendId = process.env.NEXT_PUBLIC_EMAIL_SEND_ID || "no-reply@galaxydev.pk";
 
-      if (!res.ok) throw new Error("Failed to send");
+    const body = {
+      channels: ["email"],
+      email: {
+        emailSendId,
+        to: ["masadnazir1@gmail.com"],
+        subject: "New Contact Form Submission — GalaxyDev",
+        body: `<h1>New Inquiry</h1><p>From: ${data.fullName}</p>`,
+        templateId: "send-project-galaxydev",
+        templateVars: {
+          fullName: data.fullName,
+          email: data.email,
+          company: data.company,
+          service: data.service,
+          budgetRange: data.budget || "Not specified",
+          message: data.message,
+        },
+      },
+    };
+
+    console.log("[Contact] Sending request to:", url);
+    console.log("[Contact] Payload:", JSON.stringify(body, null, 2));
+
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "X-API-Key": apiKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      const responseText = await res.text();
+      console.log("[Contact] Response status:", res.status);
+      console.log("[Contact] Response body:", responseText);
+
+      if (!res.ok) throw new Error(`API returned ${res.status}: ${responseText}`);
 
       setSubmitted(true);
       setSubmitError(false);
-    } catch {
+    } catch (err) {
+      console.error("[Contact] Error:", err);
       setSubmitError(true);
     }
   };
