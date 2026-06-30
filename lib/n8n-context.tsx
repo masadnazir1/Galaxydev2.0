@@ -13,6 +13,7 @@ export interface OnboardingData {
   email: string;
   password: string;
   company?: string;
+  userId?: string;
 }
 
 export interface Instance {

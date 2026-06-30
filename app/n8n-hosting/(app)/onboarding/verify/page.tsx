@@ -8,6 +8,7 @@ import {
   Typography,
   Container,
   Button,
+  CircularProgress,
   ThemeProvider,
   CssBaseline,
 } from "@mui/material";
@@ -16,8 +17,7 @@ import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { useN8n } from "@/lib/n8n-context";
 import { n8nLightTheme } from "@/lib/n8n-theme";
 
-const OTP_LENGTH = 4;
-const VALID_OTP = "1234";
+const OTP_LENGTH = 6;
 const COUNTDOWN_SECONDS = 30;
 
 function VerifyContent() {
@@ -28,6 +28,7 @@ function VerifyContent() {
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [verifying, setVerifying] = useState(false);
   const [resendCountdown, setResendCountdown] = useState(COUNTDOWN_SECONDS);
   const [resendDisabled, setResendDisabled] = useState(true);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -87,16 +88,42 @@ function VerifyContent() {
     }
   };
 
-  const verifyOtp = (code: string) => {
-    if (code === VALID_OTP) {
-      setSuccess(true);
-      setTimeout(() => {
-        router.push("/n8n-hosting/dashboard");
-      }, 1200);
-    } else {
-      setError(`Invalid code. Try ${VALID_OTP}.`);
+  const verifyOtp = async (code: string) => {
+    const userId = onboarding?.userId;
+    if (!userId) {
+      setError("Session expired. Please sign up again.");
+      return;
+    }
+    setVerifying(true);
+    setError("");
+    try {
+      const res = await fetch("https://n8nhostingapi-production.galaxydev.pk/auth/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, code }),
+      });
+      if (res.ok) {
+        setSuccess(true);
+        setTimeout(() => {
+          router.push("/n8n-hosting/dashboard");
+        }, 1200);
+      } else if (res.status === 400 || res.status === 409) {
+        const body = await res.json();
+        setError(body.message?.[0] || "Invalid verification code");
+        setOtp(Array(OTP_LENGTH).fill(""));
+        inputRefs.current[0]?.focus();
+      } else {
+        const body = await res.json();
+        setError(body.message?.[0] || "Verification failed");
+        setOtp(Array(OTP_LENGTH).fill(""));
+        inputRefs.current[0]?.focus();
+      }
+    } catch {
+      setError("Network error. Please try again.");
       setOtp(Array(OTP_LENGTH).fill(""));
       inputRefs.current[0]?.focus();
+    } finally {
+      setVerifying(false);
     }
   };
 
@@ -310,16 +337,22 @@ function VerifyContent() {
                     )}
 
                     <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: verifying ? 1 : 1.02 }}
+                      whileTap={{ scale: verifying ? 1 : 0.98 }}
                     >
                       <Button
                         variant="contained"
                         fullWidth
                         size="large"
-                        disabled={otp.join("").length < OTP_LENGTH}
+                        disabled={otp.join("").length < OTP_LENGTH || verifying}
                         onClick={() => verifyOtp(otp.join(""))}
-                        endIcon={<ArrowRight size={18} />}
+                        endIcon={
+                          verifying ? (
+                            <CircularProgress size={18} sx={{ color: "#fff" }} />
+                          ) : (
+                            <ArrowRight size={18} />
+                          )
+                        }
                         sx={{
                           py: 1.5,
                           background: "linear-gradient(135deg, #2693FF, #7C41FF)",
@@ -328,7 +361,7 @@ function VerifyContent() {
                           },
                         }}
                       >
-                        Verify
+                        {verifying ? "Verifying..." : "Verify"}
                       </Button>
                     </motion.div>
 

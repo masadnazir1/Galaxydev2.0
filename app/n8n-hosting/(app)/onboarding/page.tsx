@@ -125,7 +125,7 @@ function OnboardingContent() {
     const params = new URLSearchParams(searchParams.toString());
     params.set("step", String(step));
     router.replace(`/n8n-hosting/onboarding?${params.toString()}`, { scroll: false });
-  }, [step, router, searchParams]);
+  }, [step, router, searchParams.toString()]);
 
   const validateStep = useCallback(async (s: number): Promise<boolean> => {
     clearErrors();
@@ -168,16 +168,43 @@ function OnboardingContent() {
     if (!valid) return;
     const values = getValues();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setOnboarding({
-      fullName: values.fullName,
-      email: values.email,
-      password: values.password,
-      company: values.company,
-    });
-    setLoading(false);
-    router.push(`/n8n-hosting/onboarding/verify?email=${encodeURIComponent(values.email)}`);
-  }, [validateStep, getValues, setOnboarding, router]);
+    try {
+      const res = await fetch("https://n8nhostingapi-production.galaxydev.pk/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: values.fullName,
+          email: values.email,
+          password: values.password,
+          companyName: values.company || "string",
+        }),
+      });
+      if (res.status === 409) {
+        const body = await res.json();
+        setError("email", { message: body.message?.[0] || "Email already registered" });
+        setStep(1);
+        setDir(-1);
+        return;
+      }
+      if (!res.ok) {
+        const body = await res.json();
+        throw new Error(body.message?.[0] || "Something went wrong");
+      }
+      const body = await res.json();
+      setOnboarding({
+        fullName: values.fullName,
+        email: values.email,
+        password: values.password,
+        company: values.company,
+        userId: body.userId,
+      });
+      router.push(`/n8n-hosting/onboarding/verify?email=${encodeURIComponent(values.email)}`);
+    } catch (err) {
+      setError("root", { message: err instanceof Error ? err.message : "Something went wrong" });
+    } finally {
+      setLoading(false);
+    }
+  }, [validateStep, getValues, setOnboarding, router, setError]);
 
   const progress = ((step + 1) / steps.length) * 100;
 
