@@ -16,6 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { useN8n } from "@/lib/n8n-context";
 import { n8nLightTheme } from "@/lib/n8n-theme";
+import { apiFetch } from "@/lib/api-client";
 
 const OTP_LENGTH = 6;
 const COUNTDOWN_SECONDS = 30;
@@ -97,12 +98,16 @@ function VerifyContent() {
     setVerifying(true);
     setError("");
     try {
-      const res = await fetch("https://n8nhostingapi-production.galaxydev.pk/auth/verify-otp", {
+      const res = await apiFetch("https://n8nhostingapi-production.galaxydev.pk/auth/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, code }),
       });
       if (res.ok) {
+        const body = await res.json();
+        if (body.accessToken) {
+          document.cookie = `accessToken=${body.accessToken}; path=/; max-age=86400; SameSite=Lax; Secure`;
+        }
         setSuccess(true);
         setTimeout(() => {
           router.push("/n8n-hosting/dashboard");
@@ -160,22 +165,38 @@ function VerifyContent() {
       }}
     >
       <Container maxWidth="sm" sx={{ pt: { xs: 2, sm: 3 }, position: "relative", zIndex: 1 }}>
-        <Link
-          href="/n8n-hosting/onboarding"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            color: "#64748B",
-            textDecoration: "none",
-            fontSize: "0.875rem",
-            transition: "color 0.2s",
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.color = "#0F172A"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.color = "#64748B"; }}
-        >
-          <ArrowLeft size={16} /> Back
-        </Link>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <Link
+            href="/n8n-hosting/onboarding"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              color: "#64748B",
+              textDecoration: "none",
+              fontSize: "0.875rem",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = "#0F172A"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = "#64748B"; }}
+          >
+            <ArrowLeft size={16} /> Back
+          </Link>
+          <Link
+            href="/n8n-hosting/login"
+            style={{
+              color: "#2693FF",
+              textDecoration: "none",
+              fontSize: "0.875rem",
+              fontWeight: 600,
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = "#5BB5FF"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = "#2693FF"; }}
+          >
+            Sign in
+          </Link>
+        </Box>
       </Container>
 
       <Box

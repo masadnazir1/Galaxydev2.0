@@ -188,6 +188,22 @@ export default function N8nLandingPage() {
 
             <Box sx={{ display: "flex", gap: 1.5, alignItems: "center" }}>
               <Button
+                variant="text"
+                size="small"
+                onClick={() => router.push("/n8n-hosting/login")}
+                sx={{
+                  display: { xs: "none", sm: "inline-flex" },
+                  px: 2,
+                  py: 0.75,
+                  fontSize: "0.8125rem",
+                  color: "#64748B",
+                  fontWeight: 500,
+                  "&:hover": { color: "#0F172A", background: "rgba(0,0,0,0.04)" },
+                }}
+              >
+                Sign In
+              </Button>
+              <Button
                 variant="contained"
                 size="small"
                 onClick={() => router.push("/n8n-hosting/onboarding")}
@@ -260,7 +276,18 @@ export default function N8nLandingPage() {
             </ListItem>
           ))}
         </List>
-        <Box sx={{ px: 2, mt: "auto", pb: 3 }}>
+        <Box sx={{ px: 2, pb: 2 }}>
+          <Button
+            variant="outlined"
+            fullWidth
+            onClick={() => {
+              setMobileOpen(false);
+              router.push("/n8n-hosting/login");
+            }}
+            sx={{ py: 1.25, mb: 1, color: "#0F172A", borderColor: "#E2E8F0" }}
+          >
+            Sign In
+          </Button>
           <Button
             variant="contained"
             fullWidth
@@ -491,7 +518,7 @@ export default function N8nLandingPage() {
                         lineHeight: 1.3,
                       }}
                     >
-                      n8n instance running at my-workspace.n8n.galaxydev.pk
+                      n8n instance running at my-workspace-n8n.galaxydev.pk
                     </Typography>
                   </Box>
                 </Card>
@@ -656,7 +683,7 @@ export default function N8nLandingPage() {
                       {[
                         "1 fully managed n8n instance",
                         "SSL certificate (auto-renewed)",
-                        "Subdomain (your-name.n8n.galaxydev.pk)",
+                        "Subdomain (your-name-n8n.galaxydev.pk)",
                         "Daily automated backups",
                         "99.9% uptime guarantee",
                         "Community support",

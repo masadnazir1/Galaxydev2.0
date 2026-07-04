@@ -11,15 +11,18 @@ import {
   Container,
   CircularProgress,
   LinearProgress,
+  IconButton,
+  InputAdornment,
   ThemeProvider,
   CssBaseline,
 } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { z } from "zod/v4";
-import { ArrowLeft, ArrowRight, Check, User, Mail, Lock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useN8n } from "@/lib/n8n-context";
 import { n8nLightTheme } from "@/lib/n8n-theme";
+import { apiFetch } from "@/lib/api-client";
 
 const steps = [
   {
@@ -109,6 +112,8 @@ function OnboardingContent() {
   const [step, setStep] = useState(initialStep);
   const [dir, setDir] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, setError, clearErrors, getValues } = useForm<FormData>({
     defaultValues: {
@@ -169,7 +174,7 @@ function OnboardingContent() {
     const values = getValues();
     setLoading(true);
     try {
-      const res = await fetch("https://n8nhostingapi-production.galaxydev.pk/auth/signup", {
+      const res = await apiFetch("https://n8nhostingapi-production.galaxydev.pk/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -459,13 +464,24 @@ function OnboardingContent() {
                         <>
                           <TextField
                             label="Password"
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             {...register("password")}
                             error={!!errors.password}
                             helperText={errors.password?.message}
                             fullWidth
                             autoFocus
-                            slotProps={{ formHelperText: { sx: { color: "#EF4444" } } }}
+                            slotProps={{
+                              input: {
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <IconButton onClick={() => setShowPassword((p) => !p)} edge="end" size="small" sx={{ color: "#94A3B8" }}>
+                                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                    </IconButton>
+                                  </InputAdornment>
+                                ),
+                              },
+                              formHelperText: { sx: { color: "#EF4444" } },
+                            }}
                             sx={{
                               "& .MuiOutlinedInput-root": {
                                 background: "#F8F9FC",
@@ -480,12 +496,23 @@ function OnboardingContent() {
                           />
                           <TextField
                             label="Confirm Password"
-                            type="password"
+                            type={showConfirm ? "text" : "password"}
                             {...register("confirmPassword")}
                             error={!!errors.confirmPassword}
                             helperText={errors.confirmPassword?.message}
                             fullWidth
-                            slotProps={{ formHelperText: { sx: { color: "#EF4444" } } }}
+                            slotProps={{
+                              input: {
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <IconButton onClick={() => setShowConfirm((p) => !p)} edge="end" size="small" sx={{ color: "#94A3B8" }}>
+                                      {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
+                                    </IconButton>
+                                  </InputAdornment>
+                                ),
+                              },
+                              formHelperText: { sx: { color: "#EF4444" } },
+                            }}
                             sx={{
                               "& .MuiOutlinedInput-root": {
                                 background: "#F8F9FC",
@@ -578,6 +605,24 @@ function OnboardingContent() {
                 sx={{ color: "#94A3B8", display: "block", textAlign: "center", mt: { xs: 2.5, sm: 3 } }}
               >
                 By continuing, you agree to our Terms of Service and Privacy Policy.
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: "#64748B", textAlign: "center", mt: 2 }}
+              >
+                Already have an account?{" "}
+                <Link
+                  href="/n8n-hosting/login"
+                  style={{
+                    color: "#2693FF",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "#5BB5FF"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "#2693FF"; }}
+                >
+                  Sign in
+                </Link>
               </Typography>
             </motion.div>
           </motion.div>

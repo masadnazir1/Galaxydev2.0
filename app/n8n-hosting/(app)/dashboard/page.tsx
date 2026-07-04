@@ -8,6 +8,7 @@ import {
   Card,
   Button,
   Grid,
+  Skeleton,
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
@@ -20,9 +21,20 @@ import {
   Zap,
   Shield,
   CopyCheck,
+  Globe,
 } from "lucide-react";
+import { apiFetch } from "@/lib/api-client";
 import { useN8n } from "@/lib/n8n-context";
 import { c } from "@/lib/dashboard-theme";
+
+interface BillingInfo {
+  id: string;
+  plan: string;
+  status: string;
+  trialEndsAt: string | null;
+  nextBillingDate: string | null;
+  amountDue: string;
+}
 
 function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [display, setDisplay] = useState(0);
@@ -47,14 +59,43 @@ export default function DashboardOverviewPage() {
   const theme = useTheme();
   const dark = theme.palette.mode === "dark";
   const colors = c(dark);
-  const { instances, activities } = useN8n();
+  const { activities } = useN8n();
 
-  const trialEndDate = new Date(Date.now() + 2 * 86400000 + 14 * 3600000);
-  const remainingMs = trialEndDate.getTime() - Date.now();
-  const daysLeft = Math.floor(remainingMs / 86400000);
-  const hoursLeft = Math.floor((remainingMs % 86400000) / 3600000);
+  const [runningCount, setRunningCount] = useState<number | null>(null);
+  const [domainCount, setDomainCount] = useState<number | null>(null);
+  const [billing, setBilling] = useState<BillingInfo | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const runningInstances = instances.filter((i) => i.status === "running").length;
+  useEffect(() => {
+    (async () => {
+      try {
+        const [instRes, domainRes, billingRes] = await Promise.all([
+          apiFetch("https://n8nhostingapi-production.galaxydev.pk/instances?page=1&limit=1"),
+          apiFetch("https://n8nhostingapi-production.galaxydev.pk/domains?page=1&limit=1"),
+          apiFetch("https://n8nhostingapi-production.galaxydev.pk/billing/account"),
+        ]);
+
+        if (instRes.ok) {
+          const instBody = await instRes.json();
+          setRunningCount(instBody.meta?.totalItems ?? 0);
+        }
+        if (domainRes.ok) {
+          const domainBody = await domainRes.json();
+          setDomainCount(domainBody.meta?.totalItems ?? 0);
+        }
+        if (billingRes.ok) setBilling(await billingRes.json());
+      } catch {
+        // silent
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  const trialEndDate = billing?.trialEndsAt ? new Date(billing.trialEndsAt) : null;
+  const remainingMs = trialEndDate ? trialEndDate.getTime() - Date.now() : 0;
+  const daysLeft = Math.max(0, Math.floor(remainingMs / 86400000));
+  const hoursLeft = Math.max(0, Math.floor((remainingMs % 86400000) / 3600000));
 
   const activityIcons: Record<string, React.ReactNode> = {
     deploy: <Zap size={16} />,
@@ -65,6 +106,47 @@ export default function DashboardOverviewPage() {
     restart: <Activity size={16} />,
     stop: <Activity size={16} />,
   };
+
+  const stats = [
+    {
+      icon: <Server size={22} />,
+      label: "Active Instances",
+      value: runningCount ?? 0,
+      suffix: "",
+      color: "#2693FF",
+    },
+    {
+      icon: <Globe size={22} />,
+      label: "Domains",
+      value: domainCount ?? 0,
+      suffix: "",
+      color: "#22C55E",
+    },
+    {
+      icon: <Clock size={22} />,
+      label: "Trial Status",
+      value: billing?.status === "trial" && trialEndDate
+        ? `${daysLeft}d ${hoursLeft}h`
+        : billing?.status === "active"
+        ? "Active"
+        : billing?.status === "expired"
+        ? "Expired"
+        : "N/A",
+      color: "#F59E0B",
+      custom: true,
+    },
+    {
+      icon: <CreditCard size={22} />,
+      label: "Next Billing",
+      value: billing?.nextBillingDate
+        ? `Rs ${billing.amountDue}`
+        : billing?.status === "trial"
+        ? "Free trial"
+        : "N/A",
+      color: "#7C41FF",
+      custom: true,
+    },
+  ];
 
   const stagger = {
     hidden: { opacity: 0 },
@@ -92,38 +174,7 @@ export default function DashboardOverviewPage() {
 
       {/* Summary cards */}
       <Grid container spacing={2.5} sx={{ mb: 4 }}>
-        {[
-          {
-            icon: <Server size={22} />,
-            label: "Active Instances",
-            value: runningInstances,
-            suffix: "",
-            color: "#2693FF",
-          },
-          {
-            icon: <Clock size={22} />,
-            label: "Trial Status",
-            value: `${daysLeft}d ${hoursLeft}h`,
-            suffix: "",
-            color: "#F59E0B",
-            custom: true,
-          },
-          {
-            icon: <CreditCard size={22} />,
-            label: "Next Billing",
-            value: "Rs 100",
-            suffix: "",
-            color: "#22C55E",
-            custom: true,
-          },
-          {
-            icon: <Activity size={22} />,
-            label: "Uptime",
-            value: 99.97,
-            suffix: "%",
-            color: "#7C41FF",
-          },
-        ].map((stat, i) => (
+        {stats.map((stat, i) => (
           <Grid size={{ xs: 12, sm: 6, lg: 3 }} key={i}>
             <motion.div variants={fadeUp}>
               <Card
@@ -148,13 +199,13 @@ export default function DashboardOverviewPage() {
                     {stat.label}
                   </Typography>
                 </Box>
-                <Typography variant="h4" sx={{ fontWeight: 700 }}>
-                  {stat.custom ? (
-                    stat.value
-                  ) : (
-                    <AnimatedNumber value={stat.value as number} suffix={stat.suffix} />
-                  )}
-                </Typography>
+                {loading ? (
+                  <Skeleton variant="text" width={60} height={36} />
+                ) : (
+                  <Typography variant="h4" sx={{ fontWeight: 700 }}>
+                    {stat.custom ? stat.value : <AnimatedNumber value={stat.value as number} suffix={stat.suffix} />}
+                  </Typography>
+                )}
               </Card>
             </motion.div>
           </Grid>
@@ -199,50 +250,57 @@ export default function DashboardOverviewPage() {
           Recent Activity
         </Typography>
         <Card sx={{ p: 0, overflow: "hidden" }}>
-          {activities.slice(0, 6).map((activity, i) => (
-            <motion.div
-              key={activity.id}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 + i * 0.05 }}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 12,
-                padding: "14px 20px",
-                borderBottom: i < Math.min(activities.length, 6) - 1 ? `1px solid ${colors.border}` : "none",
-              }}
-            >
-              <Box
-                sx={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 2,
-                  background: colors.iconBg("#2693FF"),
+          {activities.length === 0 ? (
+            <Box sx={{ textAlign: "center", py: 4 }}>
+              <Activity size={24} style={{ opacity: 0.3, margin: "0 auto 8px", color: "#64748B" }} />
+              <Typography variant="body2" sx={{ color: "#64748B" }}>No recent activity</Typography>
+            </Box>
+          ) : (
+            activities.slice(0, 6).map((activity, i) => (
+              <motion.div
+                key={activity.id}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 + i * 0.05 }}
+                style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  color: "#2693FF",
-                  flexShrink: 0,
+                  gap: 12,
+                  padding: "14px 20px",
+                  borderBottom: i < Math.min(activities.length, 6) - 1 ? `1px solid ${colors.border}` : "none",
                 }}
               >
-                {activityIcons[activity.type] || <Activity size={16} />}
-              </Box>
-              <Box sx={{ flex: 1 }}>
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                  {activity.action}
+                <Box
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: 2,
+                    background: colors.iconBg("#2693FF"),
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#2693FF",
+                    flexShrink: 0,
+                  }}
+                >
+                  {activityIcons[activity.type] || <Activity size={16} />}
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                    {activity.action}
+                  </Typography>
+                </Box>
+                <Typography variant="caption" sx={{ color: colors.textMuted, flexShrink: 0 }}>
+                  {new Date(activity.timestamp).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </Typography>
-              </Box>
-              <Typography variant="caption" sx={{ color: colors.textMuted, flexShrink: 0 }}>
-                {new Date(activity.timestamp).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </Typography>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))
+          )}
         </Card>
       </motion.div>
     </motion.div>

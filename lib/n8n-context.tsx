@@ -75,7 +75,7 @@ const initialInstances: Instance[] = [
 const initialDomains: Domain[] = [
   {
     id: "dom-default",
-    domain: "my-workspace.n8n.galaxydev.pk",
+    domain: "my-workspace-n8n.galaxydev.pk",
     status: "verified",
     isDefault: true,
     verifiedAt: new Date(Date.now() - 7 * 86400000).toISOString(),

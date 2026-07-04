@@ -33,6 +33,7 @@ import {
 } from "lucide-react";
 import { useN8n } from "@/lib/n8n-context";
 import { n8nDarkTheme, n8nLightTheme } from "@/lib/n8n-theme";
+import { apiFetch } from "@/lib/api-client";
 
 const DRAWER_WIDTH = 260;
 const DRAWER_COLLAPSED_WIDTH = 72;
@@ -122,34 +123,55 @@ function NavLink({ item, active, collapsed, dark, onClick }: { item: NavItem; ac
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { onboarding } = useN8n();
+  const { onboarding, setOnboarding } = useN8n();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [trialEndsAt, setTrialEndsAt] = useState<string | null>(null);
+  const [hasToken, setHasToken] = useState(false);
 
   useEffect(() => {
-    if (!onboarding) {
+    const token = document.cookie.includes("accessToken=");
+    setHasToken(token);
+    if (!token) {
       router.replace("/n8n-hosting/onboarding");
       return;
     }
+    apiFetch("https://n8nhostingapi-production.galaxydev.pk/billing/account")
+      .then((r) => r.ok && r.json().then((b) => setTrialEndsAt(b.trialEndsAt)))
+      .catch(() => {});
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
-  }, [onboarding, router]);
+  }, [router]);
 
-  if (!onboarding) return null;
+  const initials = onboarding?.fullName
+    ? onboarding.fullName
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2)
+    : "U";
 
-  const initials = onboarding.fullName
-    .split(" ")
-    .map((n: string) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
+  const handleLogout = async () => {
+    try {
+      await apiFetch("https://n8nhostingapi-production.galaxydev.pk/auth/logout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch {
+      // proceed with client-side cleanup regardless
+    }
+    document.cookie = "accessToken=; path=/; max-age=0";
+    setOnboarding({} as any);
+    router.push("/n8n-hosting");
+  };
 
-  const trialEndDate = new Date(Date.now() + 2 * 86400000 + 14 * 3600000);
-  const remainingMs = trialEndDate.getTime() - Date.now();
-  const daysLeft = Math.floor(remainingMs / 86400000);
-  const hoursLeft = Math.floor((remainingMs % 86400000) / 3600000);
+  const trialEndDate = trialEndsAt ? new Date(trialEndsAt) : null;
+  const remainingMs = trialEndDate ? trialEndDate.getTime() - Date.now() : 0;
+  const daysLeft = Math.max(0, Math.floor(remainingMs / 86400000));
+  const hoursLeft = Math.max(0, Math.floor((remainingMs % 86400000) / 3600000));
 
   const colors = c(darkMode);
 
@@ -206,7 +228,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       <Box sx={{ px: collapsed ? 0 : 2, mt: "auto" }}>
         <Box
-          onClick={() => { router.push("/n8n-hosting"); }}
+          onClick={handleLogout}
           sx={{
             display: "flex",
             alignItems: "center",
@@ -321,23 +343,25 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               Welcome back,
             </Typography>
             <Typography variant="subtitle1" sx={{ fontWeight: 600, color: colors.textPrimary, display: { xs: "none", sm: "block" } }}>
-              {onboarding.fullName}
+              {onboarding?.fullName || "User"}
             </Typography>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Chip
-              label={`Trial ends in ${daysLeft}d ${hoursLeft}h`}
-              size="small"
-              sx={{
-                background: "rgba(245,158,11,0.1)",
-                color: "#F59E0B",
-                border: "1px solid rgba(245,158,11,0.2)",
-                fontWeight: 600,
-                fontSize: "0.75rem",
-                display: { xs: "none", sm: "inline-flex" },
-              }}
-            />
+            {trialEndsAt && remainingMs > 0 && (
+              <Chip
+                label={`Trial ends in ${daysLeft}d ${hoursLeft}h`}
+                size="small"
+                sx={{
+                  background: "rgba(245,158,11,0.1)",
+                  color: "#F59E0B",
+                  border: "1px solid rgba(245,158,11,0.2)",
+                  fontWeight: 600,
+                  fontSize: "0.75rem",
+                  display: { xs: "none", sm: "inline-flex" },
+                }}
+              />
+            )}
             <IconButton
               onClick={() => setDarkMode((d) => !d)}
               sx={{ color: colors.textMuted, "&:hover": { color: colors.textPrimary } }}
