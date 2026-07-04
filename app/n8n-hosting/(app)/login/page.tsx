@@ -197,7 +197,7 @@ function LoginContent() {
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 style={{
-                  p: 2, mb: 3, borderRadius: 2,
+                  padding: 16, marginBottom: 24, borderRadius: 8,
                   background: "rgba(34,197,94,0.1)",
                   border: "1px solid rgba(34,197,94,0.2)",
                   textAlign: "center",

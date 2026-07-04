@@ -37,7 +37,7 @@ export default function SettingsPage() {
   const theme = useTheme();
   const dark = theme.palette.mode === "dark";
   const colors = c(dark);
-  const { setOnboarding } = useN8n();
+  const { onboarding, setOnboarding } = useN8n();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -79,7 +79,7 @@ export default function SettingsPage() {
       }
       const updated: UserProfile = await res.json();
       setProfile(updated);
-      setOnboarding((prev) => prev ? { ...prev, fullName: updated.fullName, company: updated.companyName } : prev);
+      setOnboarding({ ...onboarding, fullName: updated.fullName, company: updated.companyName } as any);
       setSnackbar({ open: true, message: "Profile updated" });
     } catch (err) {
       setSnackbar({ open: true, message: err instanceof Error ? err.message : "Something went wrong" });
