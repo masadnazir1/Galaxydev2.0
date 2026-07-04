@@ -138,9 +138,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       router.replace("/n8n-hosting/onboarding");
       return;
     }
-    apiFetch("https://n8nhostingapi-production.galaxydev.pk/billing/account")
-      .then((r) => r.ok && r.json().then((b) => setTrialEndsAt(b.trialEndsAt)))
-      .catch(() => {});
+    apiFetch("https://n8nhostingapi-production.galaxydev.pk/billing/account").then(async (r) => {
+      if (r.ok) {
+        const b = await r.json();
+        setTrialEndsAt(b.trialEndsAt);
+      }
+    }).catch(() => {});
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, [router]);
