@@ -18,10 +18,12 @@ const products = [
   { label: "PakistanLawHelp", href: "/products" },
   { label: "DeliverIt", href: "/products" },
   { label: "JKMarkaz", href: "/products" },
+  { label: "GalaxyDev Marketplace", href: "/shop" },
 ];
 
 const company = [
   { label: "About Us", href: "/about" },
+  { label: "Founder", href: "/about/founder" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
   { label: "Careers", href: "/contact" },
