@@ -39,9 +39,9 @@ export function Footer() {
               <Image
                 src="/logo.png"
                 alt="GalaxyDev"
-                width={200}
-                height={150}
-                className="rounded-lg"
+                width={406}
+                height={99}
+                className="h-10 w-auto rounded-lg"
                 aria-hidden="true"
               />
               <span className="font-display font-semibold text-xl"> </span>

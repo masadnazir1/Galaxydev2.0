@@ -61,7 +61,7 @@ export function ScrollToTop() {
           cy={SIZE / 2}
           r={RADIUS}
           fill="none"
-          stroke="url(--scroll-progress-grad)"
+          stroke="url(#scroll-progress-grad)"
           strokeWidth={STROKE}
           strokeDasharray={CIRCUMFERENCE}
           strokeDashoffset={offset}
@@ -69,7 +69,7 @@ export function ScrollToTop() {
           className="transition-[stroke-dashoffset] duration-100"
         />
         <defs>
-          <linearGradient id="--scroll-progress-grad" x1="0" y1="0" x2="1" y2="1">
+          <linearGradient id="scroll-progress-grad" x1="0" y1="0" x2="1" y2="1">
             <stop stopColor="var(--color-blue)" />
             <stop offset="0.5" stopColor="var(--color-purple)" />
             <stop offset="1" stopColor="var(--color-magenta)" />

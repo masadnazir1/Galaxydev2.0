@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Sora, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "./AppShell";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { n8nLightTheme } from "@/lib/n8n-theme";
@@ -107,12 +109,21 @@ export default function RootLayout({
       lang="en"
       className={`${sora.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <head>
-        <script
+      <body className="min-h-full flex flex-col">
+        <AppRouterCacheProvider options={{ enableCssLayer: false }}>
+          <ThemeProvider theme={n8nLightTheme}>
+            <CssBaseline />
+            <AppShell>{children}</AppShell>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+        <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-0S6DW3DK3K"
+          strategy="afterInteractive"
         />
-        <script
+        <Script
+          id="google-tag-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -122,12 +133,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="min-h-full flex flex-col">
-        <ThemeProvider theme={n8nLightTheme}>
-          <CssBaseline />
-          <AppShell>{children}</AppShell>
-        </ThemeProvider>
       </body>
     </html>
   );
